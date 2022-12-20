@@ -17,7 +17,7 @@
 </p>
 -->
 <p align="center">
-  <img alt="book_search_Web_Scraping" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671482780/jBook_fqr4fv.gif">
+  <img alt="jBook" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671482780/jBook_fqr4fv.gif">
 </p>
 
 ## :memo: Sobre
@@ -33,8 +33,14 @@ Pesquisa por:
 Cadastra no:
 
  > • **MongoDB** em formato de **documento**;
+ <p>
+  <img alt="document_MongoDB" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671578815/document_MongoDB_qreyve.png">
+ </p>
 
  > • **Neo4j** criando um *grafo* relacionando **livro**, **autor**, **coleção** e **editora**;
+ <p>
+  <img alt="graph_Neo4j" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671578815/graph_Neo4j_riurvw.png">
+ </p>
 
 
 *(Ele realiza a pesquisa no [Google Books API](https://developers.google.com/books) desenvolvido por **Google Developers**, 
