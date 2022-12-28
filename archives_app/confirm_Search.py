@@ -12,9 +12,9 @@ def receiverSearch():
     else:
         authors = ", ".join(data['items'][n]['volumeInfo']['authors'])
         print("   Autor(es): ", authors, "\n")
-    confirmBook()
+    confirmSearch()
 
-def confirmBook():
+def confirmSearch():
     global n, URL_book
     confirm_book = input(" É esse o livro? (s/n): ")
     if confirm_book == "s":
@@ -24,6 +24,6 @@ def confirmBook():
         receiverSearch()
     else:
         print("\n Opção Inválida. \n")
-        confirm_Book()
+        confirmSearch()
 
 receiverSearch()
