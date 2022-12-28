@@ -41,7 +41,7 @@ Cadastra no:
 
  > • **Neo4j** criando um *grafo* relacionando **livro**, **autor**, **coleção** e **editora**;
  <p>
-  <img alt="graph_Neo4j" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671578815/graph_Neo4j_riurvw.png">
+  <img width=300 height=150 alt="graph_Neo4j" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671578815/graph_Neo4j_riurvw.png">
  </p>
 
 
