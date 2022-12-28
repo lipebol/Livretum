@@ -27,7 +27,7 @@ def searchInput():
 #        pass
     nameBook = input("\n Autor ou Assunto: ")
 
-    API = "https://www.googleapis.com/books/v1/volumes?fields=items(selfLink,volumeInfo(title,subtitle,authors))&q={}&maxResults=40&printType=books".format(nameBook)
+    API = "https://www.googleapis.com/books/v1/volumes?fields=items(selfLink,volumeInfo(title,subtitle,authors,imageLinks))&q={}&maxResults=40&printType=books".format(nameBook)
     r = requests.get(url=API, headers=headers)
     if r.status_code == 200:
         data = json.loads(r.content)
