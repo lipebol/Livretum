@@ -28,7 +28,7 @@ def searchInput():
         [sg.Text('')],
     ]
 
-    window_searchInput = sg.Window("jBook - Pesquisa", icon='archives_app_GUI/images/j.png',
+    window_searchInput = sg.Window("jBook", icon='archives_app_GUI/images/j.png',
     layout = layout_searchInput, size=(400,360),resizable = True, element_justification='c', 
     finalize=True)
 
