@@ -23,8 +23,7 @@ def searchInput():
     sleep(2)
     print(pyfiglet.figlet_format("    jBook ", font = "kban"))
     sleep(1)
-#    for i in tqdm(range(int(9e6)), bar_format="   {l_bar}{bar}|", ncols=55):
-#        pass
+
     nameBook = input("\n Autor ou Assunto: ")
 
     API = "https://www.googleapis.com/books/v1/volumes?fields=items(selfLink,volumeInfo(title,subtitle,authors,imageLinks))&q={}&maxResults=40&printType=books".format(nameBook)
