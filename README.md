@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img alt="jBook" src="archives_app_GUI/images/jBook.png">
+        jBook
 </h1>
 
 <h4 align="center">
