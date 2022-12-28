@@ -17,7 +17,7 @@
 </p>
 -->
 <p align="center">
-  <img alt="jBook" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672191683/jBook-demo_ls6fz7.gif">
+  <img width=301 height=323 alt="jBook" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672191683/jBook-demo_ls6fz7.gif">
 </p>
 
 ## :memo: Sobre
