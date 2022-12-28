@@ -17,11 +17,11 @@
 </p>
 -->
 <p align="center">
-  <img width=334 height=330 alt="jBook GUI" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672194244/jBook_GUI-demo_r6dblc.gif">
+  <img width=301 height=323 alt="jBook GUI" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672194244/jBook_GUI-demo_r6dblc.gif">
 </p>
 
 <p align="center">
-  <img width=334 height=330 alt="jBook Terminal" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672194243/jBook_Terminal-demo_qo2i7l.gif">
+  <img width=301 height=323 alt="jBook Terminal" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672194243/jBook_Terminal-demo_qo2i7l.gif">
 </p>
 
 ## :memo: Sobre
