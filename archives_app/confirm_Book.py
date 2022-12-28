@@ -8,7 +8,8 @@ def requestBook():
     if r.status_code == 200:
         book = json.loads(r.content)
         selector = book['volumeInfo']
-        isbn_selector = book['volumeInfo']['industryIdentifiers']
+        isbn10_selector = book['volumeInfo']['industryIdentifiers'][0]['identifier']
+        isbn13_selector = book['volumeInfo']['industryIdentifiers'][1]['identifier']
         if 'subtitle' not in selector:
             title = book['volumeInfo']['title']
         else:
@@ -27,14 +28,14 @@ def requestBook():
             publication_date = None
         else:
             publication_date = book['volumeInfo']['publishedDate']
-        if 0 not in isbn_selector:
+        if isbn10_selector:
+            isbn_10 = isbn10_selector
+        else:
             isbn_10 = None
+        if isbn13_selector:
+            isbn_13 = isbn13_selector
         else:
-            isbn_10 = book['volumeInfo']['industryIdentifiers'][0]['identifier']
-        if 1 not in isbn_selector:
             isbn_13 = None
-        else:
-            isbn_13 = book['volumeInfo']['industryIdentifiers'][1]['identifier']
         if 'pageCount' not in selector:
             pages = None
         else:
@@ -66,7 +67,7 @@ def requestBook():
             "coleção": collection,
             "título" : title,
             "autor" : authors,
-            "editora":pub_company,
+            "editora": pub_company,
             "data_da_publicação" : publication_date,
             "isbn_10" : isbn_10,
             "isbn_13" : isbn_13,
