@@ -1,5 +1,5 @@
 <h1 align="center">
-        jBook
+	<img alt="jBook" src="archives_app_GUI/images/jBook.png">
 </h1>
 
 <h4 align="center">
@@ -22,7 +22,7 @@
 
 ## :memo: Sobre
 
-**jBook** é um *mini-programa de terminal* que **pesquisa** e **cadastra** seus livros favoritos.
+**jBook** é um *mini-programa* com versões *GUI* e para *Terminal*, que **pesquisa** e **cadastra** seus livros favoritos.
 
 Pesquisa por:
 
