@@ -12,14 +12,14 @@ def inputConnMongoDB():
     return userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB
 
 def getMongoDB():
-    userMongoDB, pwdMongoDB, hostMongoDB, databaseMongoDB = inputConnMongoDB()
-    CONNECTION_STRING = "mongodb://{}:{}@{}:27017".format(userMongoDB, pwdMongoDB, hostMongoDB)
+    userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB = inputConnMongoDB()
+    CONNECTION_STRING = "mongodb://{}:{}@{}:27017".format(userMongoDB, passMongoDB, hostMongoDB)
     connection = MongoClient(CONNECTION_STRING)
 
     return connection[databaseMongoDB]
 
 def toRecordBook():
-    global collection, mongobook
+    global collection
     MongoDB = getMongoDB()
     collection = MongoDB[collection]
     confirm_item = collection.find_one(item)
