@@ -24,7 +24,7 @@
 
 ## :memo: Sobre
 
-**jBook** é um *mini-programa* com versões *GUI* e para *Terminal*, que **pesquisa** e **cadastra** seus livros favoritos.
+**jBook** é um *mini-programa* com versões *Terminal* e *GUI*, que **pesquisa** e **cadastra** seus livros favoritos.
 
 Pesquisa por:
 
