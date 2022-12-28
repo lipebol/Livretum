@@ -36,7 +36,7 @@ Cadastra no:
 
  > • **MongoDB** em formato de **documento**;
  <p>
-  <img alt="document_MongoDB" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671578815/document_MongoDB_qreyve.png">
+  <img width=200 height=150 alt="document_MongoDB" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1671578815/document_MongoDB_qreyve.png">
  </p>
 
  > • **Neo4j** criando um *grafo* relacionando **livro**, **autor**, **coleção** e **editora**;
