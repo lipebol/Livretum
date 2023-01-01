@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from archives_app_GUI.conn_MongoDB import window_inputConnMongoDB
+from files_app_GUI.conn_MongoDB import window_inputConnMongoDB
 from neo4j import GraphDatabase
 import json
 

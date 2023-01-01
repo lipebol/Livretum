@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from archives_app_GUI.inform_CollectionStatus import window_collectionStatus
+from files_app_GUI.inform_CollectionStatus import window_collectionStatus
 from pymongo import MongoClient
 import json
 

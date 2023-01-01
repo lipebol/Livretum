@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
-from archives_app_GUI.search_API import data, n, headers
-from archives_app_GUI.search_API import window_searchInput
+from files_app_GUI.search_API import data, n, headers
+from files_app_GUI.search_API import window_searchInput
 import textwrap
 import requests
 from PIL import Image

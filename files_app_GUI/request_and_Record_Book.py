@@ -1,12 +1,12 @@
 import PySimpleGUI as sg
 from pymongo import MongoClient
 from neo4j import GraphDatabase
-from archives_app_GUI.search_API import headers
-from archives_app_GUI.confirm_Search import n, URL_book
-from archives_app_GUI.inform_CollectionStatus import collection, status
-from archives_app_GUI.conn_MongoDB import userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB
-from archives_app_GUI.conn_Neo4j import userNeo4j, passNeo4j, hostNeo4j
-from archives_app_GUI.conn_Neo4j import window_inputConnNeo4j
+from files_app_GUI.search_API import headers
+from files_app_GUI.confirm_Search import n, URL_book
+from files_app_GUI.inform_CollectionStatus import collection, status
+from files_app_GUI.conn_MongoDB import userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB
+from files_app_GUI.conn_Neo4j import userNeo4j, passNeo4j, hostNeo4j
+from files_app_GUI.conn_Neo4j import window_inputConnNeo4j
 import requests
 import json
 import textwrap
