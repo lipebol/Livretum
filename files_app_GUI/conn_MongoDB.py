@@ -14,7 +14,7 @@ def testConnMongoDB():
         [sg.Column([[messagetestConnMongoDB]])],
     ]
 
-    window_testConnMongoDB = sg.Window("Conn-MongoDB",icon='archives_app_GUI/images/j.png', 
+    window_testConnMongoDB = sg.Window("Conn-MongoDB",icon='files_app_GUI/images/j.png', 
     layout = layout_testConnMongoDB, size=(200,100), resizable = True, element_justification='c', 
     finalize=True)
 
@@ -28,7 +28,7 @@ def inputConnMongoDB():
     sg.theme('DarkGrey11')
     window_collectionStatus.hide()
 
-    MongoDB_logo = sg.Image(filename='archives_app_GUI/images/MongoDB_logo.png')
+    MongoDB_logo = sg.Image(filename='files_app_GUI/images/MongoDB_logo.png')
     buttonTestMongoDB = sg.Button("Próximo", font='Courier 12')
    
     layout_inputConnMongoDB = [
@@ -53,7 +53,7 @@ def inputConnMongoDB():
         [sg.Text("")],
     ]
 
-    window_inputConnMongoDB = sg.Window("jBook(MongoDB)", icon='archives_app_GUI/images/j.png', 
+    window_inputConnMongoDB = sg.Window("jBook(MongoDB)", icon='files_app_GUI/images/j.png', 
     layout = layout_inputConnMongoDB, size=(480,420), resizable = True, finalize=True)
 
     while True:

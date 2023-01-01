@@ -14,7 +14,7 @@ def testConnNeo4j():
         [sg.Column([[messagetestConnNeo4j]])],
     ]
 
-    window_testConnNeo4j = sg.Window("Conn-Neo4j",icon='archives_app_GUI/images/j.png', 
+    window_testConnNeo4j = sg.Window("Conn-Neo4j",icon='files_app_GUI/images/j.png', 
     layout = layout_testConnNeo4j, size=(200,100), resizable = True, element_justification='c', 
     finalize=True)
 
@@ -28,7 +28,7 @@ def inputConnNeo4j():
     sg.theme('DarkGrey11')
     window_inputConnMongoDB.hide()
 
-    Neo4j_logo = sg.Image(filename='archives_app_GUI/images/Neo4j_logo.png')
+    Neo4j_logo = sg.Image(filename='files_app_GUI/images/Neo4j_logo.png')
     buttonTestNeo4j = sg.Button("Próximo", font='Courier 12')
    
     layout_inputConnNeo4j = [
@@ -47,7 +47,7 @@ def inputConnNeo4j():
         [sg.Text("")],
     ]
 
-    window_inputConnNeo4j = sg.Window("jBook(Neo4j)", icon='archives_app_GUI/images/j.png', 
+    window_inputConnNeo4j = sg.Window("jBook(Neo4j)", icon='files_app_GUI/images/j.png', 
     layout = layout_inputConnNeo4j, size=(480,360), resizable = True, finalize=True)
 
     while True:

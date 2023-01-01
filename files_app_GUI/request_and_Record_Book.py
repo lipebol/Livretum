@@ -30,7 +30,7 @@ def confirmItemMongoDB():
         [sg.Column([[messageconfirmItemMongoDB]])],
     ]
 
-    window_confirmItemMongoDB = sg.Window("Não se lembra?",icon='archives_app_GUI/images/j.png', 
+    window_confirmItemMongoDB = sg.Window("Não se lembra?",icon='files_app_GUI/images/j.png', 
     layout = layout_confirmItemMongoDB, size=(400,100), resizable = True, element_justification='c', 
     finalize=True)
 
@@ -67,7 +67,7 @@ def confirmRegisteredBook():
         [sg.Column([[messageconfirmRegisteredBook]])],
     ]
 
-    window_confirmRegisteredBook = sg.Window("jBook", icon='archives_app_GUI/images/j.png', 
+    window_confirmRegisteredBook = sg.Window("jBook", icon='files_app_GUI/images/j.png', 
     layout = layout_confirmRegisteredBook, size=(400,100), 
     resizable=True, element_justification='c', finalize=True)
 
@@ -132,7 +132,7 @@ def requestAndRecordBook():
         else:
             language = book['volumeInfo']['language']
 
-    jBook = sg.Image(filename='archives_app_GUI/images/jBook.png')
+    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
     confirm_data_book = sg.Text("Dados do Livro", font='Courier 14')
 
     layout_requestAndRecordBook = [
@@ -156,7 +156,7 @@ def requestAndRecordBook():
         [sg.Text("")],
     ]
 
-    window_requestAndRecordBook = sg.Window("jBook", icon='archives_app_GUI/images/j.png',
+    window_requestAndRecordBook = sg.Window("jBook", icon='files_app_GUI/images/j.png',
     layout = layout_requestAndRecordBook, size=(600,620), resizable = True, element_justification='c',
     finalize=True)
 
@@ -201,8 +201,8 @@ def requestAndRecordBook():
                 with open('book.json','w') as cnt:
                     pass
                 os.remove('book.json')
-                os.remove('archives_app_GUI/images/book.jpeg')
-                os.remove('archives_app_GUI/images/book.png')
+                os.remove('files_app_GUI/images/book.jpeg')
+                os.remove('files_app_GUI/images/book.png')
                 confirmRegisteredBook()
                 break
     

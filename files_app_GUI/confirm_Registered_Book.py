@@ -13,7 +13,7 @@ def confirmRegisteredBook():
         [sg.Column([[messageconfirmRegisteredBook]])],
     ]
 
-    window_messageconfirmRegisteredBook = sg.Window("jBook", icon='archives_app_GUI/images/j.png', 
+    window_messageconfirmRegisteredBook = sg.Window("jBook", icon='files_app_GUI/images/j.png', 
     layout = layout_messageconfirmRegisteredBook, size=(400,100), 
     resizable=True, element_justification='c', finalize=True)
 

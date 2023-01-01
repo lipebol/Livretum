@@ -36,14 +36,14 @@ def confirmSearch():
         URL_image = data['items'][n]['volumeInfo']['imageLinks']['smallThumbnail']
         r = requests.get(url=URL_image, headers=headers, stream=True)
         if r.status_code == 200:
-            with open('archives_app_GUI/images/book.jpeg', 'wb') as image:
+            with open('files_app_GUI/images/book.jpeg', 'wb') as image:
                 image.write(r.content)
-            image = Image.open('archives_app_GUI/images/book.jpeg')
-            image.save('archives_app_GUI/images/book.png')
+            image = Image.open('files_app_GUI/images/book.jpeg')
+            image.save('files_app_GUI/images/book.png')
             
-    jBook = sg.Image(filename='archives_app_GUI/images/jBook.png')
+    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
     confirm_Book = sg.Text("É esse o livro?", font='Courier 14')
-    bookImage = sg.Image(filename='archives_app_GUI/images/book.png')
+    bookImage = sg.Image(filename='files_app_GUI/images/book.png')
     textTitle = sg.Text("Nome: {} ".format(title), font='Courier 14')
     textAuthors = sg.Text("Autor(es): {} ".format(authors), font='Courier 14')
     buttonYes = sg.Button("Sim", key="Sim", font='Courier 12')
@@ -63,7 +63,7 @@ def confirmSearch():
         [sg.Text("")],
     ]
 
-    window_confirmSearch = sg.Window("jBook", icon='archives_app_GUI/images/j.png',
+    window_confirmSearch = sg.Window("jBook", icon='files_app_GUI/images/j.png',
     layout = layout_confirmSearch, size=(600,620),resizable = True, finalize=True)
 
     while True:

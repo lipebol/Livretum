@@ -4,7 +4,7 @@ def collectionStatus():
 
     sg.theme('DarkGrey11')
 
-    jBook = sg.Image(filename='archives_app_GUI/images/jBook.png')
+    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
     questionCollection = sg.Text("Coleção:", font='Courier 14')
     collectionInput = sg.InputText('', key="collection", size=(30), font='Courier 14')
     questionStatus = sg.Text("Adquirido?", font='Courier 14')
@@ -27,7 +27,7 @@ def collectionStatus():
         [sg.Text("")],
     ]
 
-    window_collectionStatus = sg.Window("jBook", icon='archives_app_GUI/images/j.png',
+    window_collectionStatus = sg.Window("jBook", icon='files_app_GUI/images/j.png',
     layout = layout_collectionStatus, size=(600,440), resizable = True, element_justification='c', 
     finalize=True)
 

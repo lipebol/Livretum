@@ -12,7 +12,7 @@ def searchInput():
     
     sg.theme('DarkGrey11')
 
-    jBook = sg.Image(filename='archives_app_GUI/images/jBook.png')
+    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
     search = sg.Text("Autor ou Assunto: ", font='Courier 14')
     searchInput = sg.InputText('', key="nameBook", size=(26), font='Courier 14')
 
@@ -28,7 +28,7 @@ def searchInput():
         [sg.Text('')],
     ]
 
-    window_searchInput = sg.Window("jBook", icon='archives_app_GUI/images/j.png',
+    window_searchInput = sg.Window("jBook", icon='files_app_GUI/images/j.png',
     layout = layout_searchInput, size=(400,360),resizable = True, element_justification='c', 
     finalize=True)
 
