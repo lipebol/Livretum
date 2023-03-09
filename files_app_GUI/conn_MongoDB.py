@@ -54,7 +54,7 @@ def inputConnMongoDB():
     ]
 
     window_inputConnMongoDB = sg.Window("jBook(MongoDB)", icon='files_app_GUI/images/j.png', 
-    layout = layout_inputConnMongoDB, size=(480,420), resizable = True, finalize=True)
+    layout = layout_inputConnMongoDB, size=(480, 480), resizable = True, finalize=True)
 
     while True:
         event, values = window_inputConnMongoDB.read()

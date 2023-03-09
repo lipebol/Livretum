@@ -48,7 +48,7 @@ def inputConnNeo4j():
     ]
 
     window_inputConnNeo4j = sg.Window("jBook(Neo4j)", icon='files_app_GUI/images/j.png', 
-    layout = layout_inputConnNeo4j, size=(480,360), resizable = True, finalize=True)
+    layout = layout_inputConnNeo4j, size=(480, 420), resizable = True, finalize=True)
 
     while True:
         event, values = window_inputConnNeo4j.read()
