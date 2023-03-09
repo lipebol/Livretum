@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  Search/Register Favorite Books
+  Pesquise e Cadastre seus Livros Favoritos!
 </h4>
 <!--
 <p align="center">
@@ -17,14 +17,12 @@
 </p>
 -->
 <p align="center">
-	<img width=334 height=330 alt="jBook Terminal" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672194243/jBook_Terminal-demo_qo2i7l.gif">
-	&nbsp;
 	<img width=334 height=330 alt="jBook GUI" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1672194244/jBook_GUI-demo_r6dblc.gif">
 </p>
 
 ## :memo: Sobre
 
-**jBook** é um *mini-programa* com versões *Terminal* e *GUI*, que **pesquisa** e **cadastra** seus livros favoritos.
+**jBook** é um *mini-programa* que **pesquisa** e **cadastra** seus livros favoritos.
 
 Pesquisa por:
 
