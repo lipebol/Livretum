@@ -7,6 +7,7 @@ from files_app_GUI.inform_CollectionStatus import collection, status
 from files_app_GUI.conn_MongoDB import userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB
 from files_app_GUI.conn_Neo4j import userNeo4j, passNeo4j, hostNeo4j
 from files_app_GUI.conn_Neo4j import window_inputConnNeo4j
+from files_app_GUI.scrape import Scrape
 import requests
 import json
 import textwrap
@@ -131,6 +132,8 @@ def requestAndRecordBook():
             language = None
         else:
             language = book['volumeInfo']['language']
+            
+    rating, price = Scrape(title)
 
     jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
     confirm_data_book = sg.Text("Dados do Livro", font='Courier 14')
@@ -139,9 +142,9 @@ def requestAndRecordBook():
         [sg.Text("")],
         [sg.Column([[jBook]])],
         [sg.Text("")],
-        [sg.Text("")],
         [sg.Column([[confirm_data_book]])],
         [sg.Text("{} ".format(title), font='Courier 12')],
+        [sg.Text("Avaliação: {} ".format(rating), font='Courier 12')],
         [sg.Text("Autor(es): {} ".format(authors), font='Courier 12')],
         [sg.Text("Editora: {} ".format(pub_company), font='Courier 12')],
         [sg.Text("Publicação: {} ".format(publication_date), font='Courier 12')],
@@ -151,6 +154,7 @@ def requestAndRecordBook():
         [sg.Text("Idioma: {} ".format(language), font='Courier 12')],
         [sg.Text("Coleção: {} ".format(collection), font='Courier 12')],
         [sg.Text("Adquirido?: {} ".format(status), font='Courier 12')],
+        [sg.Text("Preço: {} ".format(price), font='Courier 12')],
         [sg.Text("")],
         [sg.Button("Cadastrar", font='Courier 12')],
         [sg.Text("")],
@@ -175,7 +179,9 @@ def requestAndRecordBook():
             "isbn_13": isbn_13,
             "páginas": pages,
             "idioma": language,
-            "Adquirido?": status
+            "Adquirido?": status,
+            "avaliação": rating,
+            "preço": price,
             }
             MongoDB = getMongoDB()
             collection = MongoDB[collection]
