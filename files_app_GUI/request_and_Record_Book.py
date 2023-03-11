@@ -132,6 +132,16 @@ def requestAndRecordBook():
             language = None
         else:
             language = book['volumeInfo']['language']
+        if 'categories' not in selector:
+            categories = None
+        else:
+            categories = book['volumeInfo']['categories']
+            if len(categories) != 1:
+                categories = " / ".join(categories)
+            categories = "".join(categories)
+            categories = list(dict.fromkeys(categories.split(" / ")))
+            if "General" in categories:
+                categories.remove("General")
             
     rating, price = Scrape(title)
 
@@ -144,7 +154,9 @@ def requestAndRecordBook():
         [sg.Text("")],
         [sg.Column([[confirm_data_book]])],
         [sg.Text("{} ".format(title), font='Courier 12')],
+        # [sg.Text("({})".format(", ".join(categories)), font='Courier 12')],
         [sg.Text("Avaliação: {} ".format(rating), font='Courier 12')],
+        [sg.Text("Preço: {} ".format(price), font='Courier 12')],
         [sg.Text("Autor(es): {} ".format(authors), font='Courier 12')],
         [sg.Text("Editora: {} ".format(pub_company), font='Courier 12')],
         [sg.Text("Publicação: {} ".format(publication_date), font='Courier 12')],
@@ -154,14 +166,13 @@ def requestAndRecordBook():
         [sg.Text("Idioma: {} ".format(language), font='Courier 12')],
         [sg.Text("Coleção: {} ".format(collection), font='Courier 12')],
         [sg.Text("Adquirido?: {} ".format(status), font='Courier 12')],
-        [sg.Text("Preço: {} ".format(price), font='Courier 12')],
         [sg.Text("")],
         [sg.Button("Cadastrar", font='Courier 12')],
         [sg.Text("")],
     ]
 
     window_requestAndRecordBook = sg.Window("jBook", icon='files_app_GUI/images/j.png',
-    layout = layout_requestAndRecordBook, size=(600,620), resizable = True, element_justification='c',
+    layout = layout_requestAndRecordBook, size=(600, 640), resizable = True, element_justification='c',
     finalize=True)
 
     while True:
