@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from files_app_GUI.conn_MongoDB import window_inputConnMongoDB
+from files_app.conn_MongoDB import window_inputConnMongoDB
 from neo4j import GraphDatabase
 import json
 
@@ -14,9 +14,16 @@ def testConnNeo4j():
         [sg.Column([[messagetestConnNeo4j]])],
     ]
 
-    window_testConnNeo4j = sg.Window("Conn-Neo4j",icon='files_app_GUI/images/j.png', 
-    layout = layout_testConnNeo4j, size=(200,100), resizable = True, element_justification='c', 
-    finalize=True)
+    window_testConnNeo4j = sg.Window(
+        "Conn-Neo4j",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_testConnNeo4j,
+        size=(200, 100),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+        element_justification='c'
+    )
 
     while True:
         event, values = window_testConnNeo4j.read()
@@ -28,7 +35,7 @@ def inputConnNeo4j():
     sg.theme('DarkGrey11')
     window_inputConnMongoDB.hide()
 
-    Neo4j_logo = sg.Image(filename='files_app_GUI/images/Neo4j_logo.png')
+    Neo4j_logo = sg.Image(filename='files_app/images/Neo4j_logo.png')
     buttonTestNeo4j = sg.Button("Próximo", font='Courier 12')
    
     layout_inputConnNeo4j = [
@@ -47,8 +54,15 @@ def inputConnNeo4j():
         [sg.Text("")],
     ]
 
-    window_inputConnNeo4j = sg.Window("jBook(Neo4j)", icon='files_app_GUI/images/j.png', 
-    layout = layout_inputConnNeo4j, size=(480, 420), resizable = True, finalize=True)
+    window_inputConnNeo4j = sg.Window(
+        "Livretum",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_inputConnNeo4j,
+        size=(480, 420),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9
+    )
 
     while True:
         event, values = window_inputConnNeo4j.read()

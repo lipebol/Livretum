@@ -4,7 +4,7 @@ def collectionStatus():
 
     sg.theme('DarkGrey11')
 
-    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
+    logo = sg.Image(filename='files_app/images/Livretum.png')
     questionCollection = sg.Text("Coleção:", font='Courier 14')
     collectionInput = sg.InputText('', key="collection", size=(30), font='Courier 14')
     questionStatus = sg.Text("Adquirido?", font='Courier 14')
@@ -12,7 +12,7 @@ def collectionStatus():
 
     layout_collectionStatus = [
         [sg.Text("")],
-        [sg.Column([[jBook]])],
+        [sg.Column([[logo]])],
         [sg.Text("")],
         [sg.Text("")],
         [sg.Column([[questionCollection]])],
@@ -27,9 +27,16 @@ def collectionStatus():
         [sg.Text("")],
     ]
 
-    window_collectionStatus = sg.Window("jBook", icon='files_app_GUI/images/j.png',
-    layout = layout_collectionStatus, size=(600,440), resizable = True, element_justification='c', 
-    finalize=True)
+    window_collectionStatus = sg.Window(
+        "Livretum",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_collectionStatus,
+        size=(600, 440),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+        element_justification='c'
+    )
 
     while True:
         event, values = window_collectionStatus.read()

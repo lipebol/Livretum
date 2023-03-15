@@ -1,13 +1,13 @@
 import PySimpleGUI as sg
 from pymongo import MongoClient
 from neo4j import GraphDatabase
-from files_app_GUI.search_API import headers
-from files_app_GUI.confirm_Search import n, URL_book
-from files_app_GUI.inform_CollectionStatus import collection, status
-from files_app_GUI.conn_MongoDB import userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB
-from files_app_GUI.conn_Neo4j import userNeo4j, passNeo4j, hostNeo4j
-from files_app_GUI.conn_Neo4j import window_inputConnNeo4j
-from files_app_GUI.scrape import Scrape
+from files_app.search_API import searchInput
+from files_app.confirm_Search import n, URL_book
+from files_app.inform_CollectionStatus import collection, status
+from files_app.conn_MongoDB import userMongoDB, passMongoDB, hostMongoDB, databaseMongoDB
+from files_app.conn_Neo4j import userNeo4j, passNeo4j, hostNeo4j
+from files_app.conn_Neo4j import window_inputConnNeo4j
+from files_app.scrape import Scrape
 import requests
 import json
 import textwrap
@@ -31,9 +31,16 @@ def confirmItemMongoDB():
         [sg.Column([[messageconfirmItemMongoDB]])],
     ]
 
-    window_confirmItemMongoDB = sg.Window("Não se lembra?",icon='files_app_GUI/images/j.png', 
-    layout = layout_confirmItemMongoDB, size=(400,100), resizable = True, element_justification='c', 
-    finalize=True)
+    window_confirmItemMongoDB = sg.Window(
+        "Não se lembra?",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_confirmItemMongoDB,
+        size=(400, 100),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+        element_justification='c'
+    )
 
     while True:
         event, values = window_confirmItemMongoDB.read()
@@ -68,9 +75,16 @@ def confirmRegisteredBook():
         [sg.Column([[messageconfirmRegisteredBook]])],
     ]
 
-    window_confirmRegisteredBook = sg.Window("jBook", icon='files_app_GUI/images/j.png', 
-    layout = layout_confirmRegisteredBook, size=(400,100), 
-    resizable=True, element_justification='c', finalize=True)
+    window_confirmRegisteredBook = sg.Window(
+        "Livretum",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_confirmRegisteredBook,
+        size=(400, 100),
+        resizable=True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+        element_justification='c'
+    )
 
     while True:
         event, values = window_confirmRegisteredBook.read()
@@ -145,12 +159,12 @@ def requestAndRecordBook():
             
     rating, price = Scrape(title)
 
-    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
+    logo = sg.Image(filename='files_app/images/Livretum.png')
     confirm_data_book = sg.Text("Dados do Livro", font='Courier 14')
 
     layout_requestAndRecordBook = [
         [sg.Text("")],
-        [sg.Column([[jBook]])],
+        [sg.Column([[logo]])],
         [sg.Text("")],
         [sg.Column([[confirm_data_book]])],
         [sg.Text("{} ".format(title), font='Courier 12')],
@@ -171,9 +185,16 @@ def requestAndRecordBook():
         [sg.Text("")],
     ]
 
-    window_requestAndRecordBook = sg.Window("jBook", icon='files_app_GUI/images/j.png',
-    layout = layout_requestAndRecordBook, size=(600, 640), resizable = True, element_justification='c',
-    finalize=True)
+    window_requestAndRecordBook = sg.Window(
+        "Livretum",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_requestAndRecordBook,
+        size=(600, 640),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+        element_justification='c'
+    )
 
     while True:
         event, values = window_requestAndRecordBook.read()
@@ -218,8 +239,8 @@ def requestAndRecordBook():
                 with open('book.json','w') as cnt:
                     pass
                 os.remove('book.json')
-                os.remove('files_app_GUI/images/book.jpeg')
-                os.remove('files_app_GUI/images/book.png')
+                os.remove('files_app/images/book.jpeg')
+                os.remove('files_app/images/book.png')
                 confirmRegisteredBook()
                 break
     

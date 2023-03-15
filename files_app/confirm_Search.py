@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
-from files_app_GUI.search_API import data, n, headers
-from files_app_GUI.search_API import window_searchInput
+from files_app.search_API import data, n, headers
+from files_app.search_API import window_searchInput
 import textwrap
 import requests
 from PIL import Image
@@ -36,14 +36,14 @@ def confirmSearch():
         URL_image = data['items'][n]['volumeInfo']['imageLinks']['smallThumbnail']
         r = requests.get(url=URL_image, headers=headers, stream=True)
         if r.status_code == 200:
-            with open('files_app_GUI/images/book.jpeg', 'wb') as image:
+            with open('files_app/images/book.jpeg', 'wb') as image:
                 image.write(r.content)
-            image = Image.open('files_app_GUI/images/book.jpeg')
-            image.save('files_app_GUI/images/book.png')
+            image = Image.open('files_app/images/book.jpeg')
+            image.save('files_app/images/book.png')
             
-    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
+    logo = sg.Image(filename='files_app/images/Livretum.png')
     confirm_Book = sg.Text("É esse o livro?", font='Courier 14')
-    bookImage = sg.Image(filename='files_app_GUI/images/book.png')
+    bookImage = sg.Image(filename='files_app/images/book.png')
     textTitle = sg.Text("Nome: {} ".format(title), font='Courier 14')
     textAuthors = sg.Text("Autor(es): {} ".format(authors), font='Courier 14')
     buttonYes = sg.Button("Sim", key="Sim", font='Courier 12')
@@ -51,7 +51,7 @@ def confirmSearch():
     
     layout_confirmSearch = [
         [sg.Text("")],
-        [sg.Column([[jBook]], justification='center')],
+        [sg.Column([[logo]], justification='center')],
         [sg.Text("")],
         [sg.Column([[confirm_Book]], justification='center')],
         [sg.Column([[bookImage]], justification='center')],
@@ -63,8 +63,15 @@ def confirmSearch():
         [sg.Text("")],
     ]
 
-    window_confirmSearch = sg.Window("jBook", icon='files_app_GUI/images/j.png',
-    layout = layout_confirmSearch, size=(600,620),resizable = True, finalize=True)
+    window_confirmSearch = sg.Window(
+        "Livretum",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_confirmSearch, 
+        size=(600, 620),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+    )
 
     while True:
         event, values = window_confirmSearch.read()

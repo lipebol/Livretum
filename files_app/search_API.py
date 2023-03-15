@@ -12,13 +12,13 @@ def searchInput():
     
     sg.theme('DarkGrey11')
 
-    jBook = sg.Image(filename='files_app_GUI/images/jBook.png')
+    logo = sg.Image(filename='files_app/images/Livretum.png')
     search = sg.Text("Autor ou Assunto: ", font='Courier 14')
     searchInput = sg.InputText('', key="nameBook", size=(26), font='Courier 14')
 
     layout_searchInput = [
         [sg.Text('')],
-        [sg.Column([[jBook]])],
+        [sg.Column([[logo]])],
         [sg.Text('')],
         [sg.Text('')],
         [sg.Column([[search]])],
@@ -28,9 +28,16 @@ def searchInput():
         [sg.Text('')],
     ]
 
-    window_searchInput = sg.Window("jBook", icon='files_app_GUI/images/j.png',
-    layout = layout_searchInput, size=(400,360),resizable = True, element_justification='c', 
-    finalize=True)
+    window_searchInput = sg.Window(
+        "Livretum",
+        icon='files_app/images/icon_Livretum.png',
+        layout = layout_searchInput,
+        size=(400, 360),
+        resizable = True,
+        grab_anywhere=True,
+        alpha_channel=.9,
+        element_justification='c'
+    )
 
     while True:
         event, values = window_searchInput.read()
@@ -47,4 +54,4 @@ def searchInput():
      
     return window_searchInput, data, n, headers
     
-window_searchInput, data, n, headers = searchInput()
+# window_searchInput, data, n, headers = searchInput()
