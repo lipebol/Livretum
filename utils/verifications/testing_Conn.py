@@ -1,5 +1,6 @@
 import pymongo
 from utils.notifications.test_Conn import testConn
+import os
 
 
 def testingConn(directory, conn_type, user, pwd, addr):
@@ -14,6 +15,7 @@ def testingConn(directory, conn_type, user, pwd, addr):
             test = "OK"
             with open(f"{directory}/.test", "w") as test_file:
                 test_file.write(test)
+            os.chmod(f"{directory}/.test", 0o400)
             testConn()
     except pymongo.errors.ConfigurationError:
         print("Tente novamente!")
