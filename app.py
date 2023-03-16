@@ -1,4 +1,4 @@
-from menu import menuApp
+from src.menu import menuApp
 
 def App():
 
