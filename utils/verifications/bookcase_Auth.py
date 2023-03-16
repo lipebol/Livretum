@@ -1,4 +1,3 @@
-import PySimpleGUI as sg
 from utils.others.input_Auth import inputAuth
 from cpt.encr import encryptPath
 

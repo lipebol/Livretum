@@ -1,4 +1,3 @@
-import PySimpleGUI as sg
 from cryptography.fernet import Fernet
 import os
 from utils.notifications.no_File import noFile

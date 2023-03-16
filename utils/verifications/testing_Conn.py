@@ -1,4 +1,3 @@
-import PySimpleGUI as sg
 import pymongo
 from utils.notifications.test_Conn import testConn
 

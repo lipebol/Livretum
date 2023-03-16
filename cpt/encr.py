@@ -1,4 +1,3 @@
-import PySimpleGUI as sg
 from cryptography.fernet import Fernet
 
 def encryptPath(directory, path, conn_type):
