@@ -35,10 +35,10 @@ def myBookcase(user_bookcase):
         if event == sg.WIN_CLOSED:
             return "Exit"
             break
-        # if event == "🔄":
-        #     window_myBookcase.Hide()
-        #     return "Reload"
-        #     break
+        if event == "🔄":
+            window_myBookcase.Hide()
+            return "Reload"
+            break
         if event == "Novo Livro":
             window_myBookcase.Hide()
             cadasterBook(user_bookcase)
