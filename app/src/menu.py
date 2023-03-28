@@ -1,7 +1,7 @@
 # apt install python3-tk
 
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 from cpt.gen import gen
 from src.user_Bookcase import userBookcase
 from src.my_Bookcase import myBookcase
@@ -14,7 +14,7 @@ def menuApp():
     x = 500
     y = 310
     
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
     bookcase = sg.Button("Minha Estante", font='Courier 12')
@@ -39,8 +39,8 @@ def menuApp():
         size=(x, y),
         resizable=True,
         grab_anywhere=True,
-        alpha_channel=.9
-        # location=(size_x, size_y)
+        alpha_channel=.9,
+        location=(size_x, size_y)
     )
 
     while True:
