@@ -1,5 +1,7 @@
 from src.menu import menuApp
 
+def App():
 
-if __name__ == '__main__':
     menuApp()
+
+App()
