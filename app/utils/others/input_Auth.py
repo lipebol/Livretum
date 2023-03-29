@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 
 
 def inputAuth():
@@ -9,7 +9,7 @@ def inputAuth():
     x = 500
     y = 410
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
     question_path = sg.Text("Onde estão as credenciais do MongoDB?", font='Courier 14')
@@ -39,8 +39,8 @@ def inputAuth():
         resizable=True,
         grab_anywhere=True,
         alpha_channel=.9,
-        element_justification='c'
-        # location=(size_x, size_y)
+        element_justification='c',
+        location=(size_x, size_y)
     )
 
     path = None

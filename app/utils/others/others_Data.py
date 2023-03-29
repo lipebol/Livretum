@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 from utils.notifications.no_Data import noData
 
 def othersData():
@@ -9,7 +9,7 @@ def othersData():
     x = 600
     y = 440
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
     question_collection = sg.Text("Coleção:", font='Courier 14')
@@ -40,8 +40,8 @@ def othersData():
         resizable = True,
         grab_anywhere=True,
         alpha_channel=.9,
-        element_justification='c'
-        # location=(size_x, size_y)
+        element_justification='c',
+        location=(size_x, size_y)
     )
 
     while True:

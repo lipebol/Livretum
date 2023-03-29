@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 from utils.verifications.path_User import pathUser
 from utils.others.bookcase_Auth import bookcaseAuth
 from utils.verifications.auth_Path import authPath
@@ -14,7 +14,7 @@ def userBookcase():
     x = 500
     y = 360
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
     question_user_bookcase = sg.Text("Quem é o dono da estante?", font='Courier 14')
@@ -41,8 +41,8 @@ def userBookcase():
         resizable=True,
         grab_anywhere=True,
         alpha_channel=.9,
-        element_justification='c'
-        # location=(size_x, size_y)
+        element_justification='c',
+        location=(size_x, size_y)
     )
 
     while True:

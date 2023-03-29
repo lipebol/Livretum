@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 from utils.verifications.layout_recordBook import layoutrecordBook
 from utils.others.add_Item import addItem
 from utils.notifications.prev_Registered import prevRegistered
 from utils.notifications.item_Added import itemAdded
 # import json
-# import os
+import os
 
 
 def queryNeo4j(query):
@@ -32,7 +32,7 @@ def recordBook(URL_book, collection, status, user_bookcase):
     x = 600
     y = 640
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     layout_recordBook = layoutrecordBook(URL_book, collection, status)
 
@@ -44,8 +44,8 @@ def recordBook(URL_book, collection, status, user_bookcase):
         resizable = True,
         grab_anywhere=True,
         alpha_channel=.9,
-        element_justification='c'
-        # location=(size_x, size_y)
+        element_justification='c',
+        location=(size_x, size_y)
     )
 
     while True:
@@ -55,6 +55,8 @@ def recordBook(URL_book, collection, status, user_bookcase):
         if event == "Cadastrar":
             result = addItem(URL_book, collection, status, user_bookcase)
             window_recordBook.Hide()
+            os.remove('app/src/images/book.jpeg')
+            os.remove('app/src/images/book.png')
             if result == "prev_Registered":
                 prevRegistered()
                 break
@@ -71,7 +73,5 @@ def recordBook(URL_book, collection, status, user_bookcase):
     #             with open('book.json','w') as cnt:
     #                 pass
     #             os.remove('book.json')
-    #             os.remove('files_app/images/book.jpeg')
-    #             os.remove('files_app/images/book.png')
     #             confirmRegisteredBook()
     #             break

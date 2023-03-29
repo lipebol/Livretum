@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 from utils.verifications.layout_Conn import layout_Conn
 from utils.verifications.testing_Conn import testingConn
 from utils.notifications.test_Conn import testConn
@@ -13,7 +13,7 @@ def connMongoDB(directory, user_bookcase, user, pwd, addr):
     x = 420
     y = 510
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     MongoDB_logo = sg.Image(filename='app/src/images/MongoDB_logo.png')
     len_pwd = "*" * len(pwd)
@@ -31,8 +31,8 @@ def connMongoDB(directory, user_bookcase, user, pwd, addr):
         size=(x, y),
         resizable = True,
         grab_anywhere=True,
-        alpha_channel=.9
-        # location=(size_x, size_y)
+        alpha_channel=.9,
+        location=(size_x, size_y)
     )
 
     while True:

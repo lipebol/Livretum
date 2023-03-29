@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 import requests
 import json
 
@@ -13,7 +13,7 @@ def searchInput():
     x = 400
     y = 390
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
     search = sg.Text("Autor ou Assunto: ", font='Courier 14')
@@ -41,8 +41,8 @@ def searchInput():
         resizable = True,
         grab_anywhere=True,
         alpha_channel=.9,
-        element_justification='c'
-        # location=(size_x, size_y)
+        element_justification='c',
+        location=(size_x, size_y)
     )
 
     while True:

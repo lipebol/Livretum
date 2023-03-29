@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-# from utils.window.location import location
+from utils.window.location import location
 from utils.verifications.extract_One import extractOne
 
 
@@ -10,7 +10,7 @@ def checkSearch(data, n, headers):
     x = 600
     y = 620
 
-    # size_x, size_y = location(x, y)
+    size_x, size_y = location(x, y)
 
     URL_book, title, authors = extractOne(data, n, headers)
             
@@ -43,8 +43,8 @@ def checkSearch(data, n, headers):
         size=(x, y),
         resizable = True,
         grab_anywhere=True,
-        alpha_channel=.9
-        # location=(size_x, size_y)
+        alpha_channel=.9,
+        location=(size_x, size_y)
     )
 
     while True:
