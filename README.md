@@ -13,7 +13,7 @@
 ## :memo: Sobre
 
 **Livretum** está sendo construído para ser um sistema de recomendação de livros.
-Utiliza o Google Books API, MongoDB e Neo4j (Local ou Cloud).
+\nUtiliza o Google Books API, MongoDB e Neo4j (Local ou Cloud).
 
 Pesquisa por:
 
@@ -23,8 +23,7 @@ Pesquisa por:
 
  > • **assunto**
 
-*(Ele realiza a pesquisa no [Google Books API](https://developers.google.com/books) desenvolvido por **Google Developers**, 
-da empresa [**Google LLC**](https://about.google/).)*
+*(Ele realiza a pesquisa no [Google Books API](https://developers.google.com/books) desenvolvido por **Google Developers**, da empresa [**Google LLC**](https://about.google/).)*
 
 
 ## :mag_right: Status
