@@ -14,11 +14,15 @@
 
 **Livretum** está sendo construído para ser um sistema de recomendação de livros.
 
+<p align="center">
 *(Pesquisa por nome, autor(a) ou assunto.)*
+</p>
 
-> [Google Books API](https://developers.google.com/books)
-> [MongoDB](https://www.mongodb.com/)
-> [Neo4j](https://neo4j.com/)
+> **[Google Books API](https://developers.google.com/books)**
+
+> **[MongoDB](https://www.mongodb.com/)**
+
+> **[Neo4j](https://neo4j.com)**
 
 
 ## :mag_right: Status
