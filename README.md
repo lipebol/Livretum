@@ -11,8 +11,9 @@
 </p>
 
 ## :memo: Sobre
-
-**Livretum** está sendo construído para ser um sistema de recomendação de livros.
+<p align="center">
+	<strong>Livretum</strong> está sendo construído para ser um sistema de recomendação de livros.
+</p>
 
 <p align="center">
 	Pesquisa por <i>nome</i>, <i>autor(a)</i> ou <i>assunto</i>.
