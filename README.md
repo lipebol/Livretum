@@ -15,7 +15,7 @@
 **Livretum** está sendo construído para ser um sistema de recomendação de livros.
 
 
-> Detalhes em *[Releases](https://github.com/lipebol/Livretum/releases)*
+> **Veja mais em [*Releases*](https://github.com/lipebol/Livretum/releases)**;
 
 
 ## :mag_right: Status
