@@ -15,11 +15,7 @@
 **Livretum** está sendo construído para ser um sistema de recomendação de livros.
 
 
-> *[Google Books API](https://developers.google.com/books)*
-
-> *[MongoDB](https://www.mongodb.com/)*
-
-> *[Neo4j](https://neo4j.com)*
+> Detalhes em *[Releases](https://github.com/lipebol/Livretum/releases)*
 
 
 ## :mag_right: Status
