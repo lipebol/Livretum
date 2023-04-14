@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 from utils.window.location import location
+from utils.notifications.file_Format import fileFormat
+from utils.notifications.no_Data import noData
 
 
 def inputAuth():
@@ -12,8 +14,9 @@ def inputAuth():
     size_x, size_y = location(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    question_path = sg.Text("Onde estão as credenciais do MongoDB?", font='Courier 14')
+    question_path = sg.Text("Onde está o 'arquivo.txt'?", font='Courier 14')
     version = sg.Text("v 0.2", font='Courier 8')
+    fileFormat()
 
     layout_pathAuth = [
         [sg.Text('')],
@@ -43,28 +46,27 @@ def inputAuth():
         location=(size_x, size_y)
     )
 
-    path = None
-    conn_type = None
-
     while True:
         event, values = window_pathAuth.read()
         if event == sg.WIN_CLOSED:
-            return path, conn_type
+            return "Exit", "Exit"
             break
-        if event == "OK":
-            path_Auth = values["pathAuthMongoDB"]
-            if path_Auth == "":
+        if values["pathAuthMongoDB"] == "" or values["type_local"] == False and values["type_atlas"] == False:
+            window_pathAuth.Hide()
+            noData()
+            return "Repeat", "Repeat"
+            break
+        else:
+            if event == "OK":
                 window_pathAuth.Hide()
-                return path, conn_type
-                break
-            else:
                 path = values["pathAuthMongoDB"]
                 type_local = values["type_local"]
                 type_atlas = values["type_atlas"]
                 if type_local == True:
                     conn_type = "Local"
+                    return path, conn_type
+                    break
                 if type_atlas == True:
                     conn_type = "Atlas"
-                window_pathAuth.Hide()
-                return path, conn_type
-                break
+                    return path, conn_type
+                    break
