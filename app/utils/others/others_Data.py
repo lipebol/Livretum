@@ -52,7 +52,8 @@ def othersData():
         if values["collection"] == "" or values["yes"] == False and values["no"] == False:
             window_othersData.Hide()
             noData()
-            othersData()
+            return "Repeat", "Repeat"
+            break
         else:
             if event == "Enviar":
                 window_othersData.Hide()

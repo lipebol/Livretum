@@ -3,8 +3,11 @@ from cpt.encr import encryptPath
 
 
 def bookcaseAuth(directory):
-    path, conn_type = inputAuth()
-    if path == None or conn_type == None:
+    path = "Repeat"
+    conn_type = "Repeat"
+    while path == "Repeat" or conn_type == "Repeat":
+        path, conn_type = inputAuth()
+    if path == "Exit" or conn_type == "Exit":
         return path, conn_type
     else:
         encryptPath(directory, path, conn_type)

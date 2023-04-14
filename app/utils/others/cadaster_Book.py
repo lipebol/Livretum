@@ -12,6 +12,9 @@ def cadasterBook(user_bookcase):
             URL_book = checkSearch(data, n, headers)
             n+=1
         if URL_book != None:
-            collection, status = othersData()
+            collection = "Repeat"
+            status = "Repeat"
+            while collection == "Repeat" or status == "Repeat":
+                collection, status = othersData()
             if collection != "Exit" or status != "Exit":
                 recordBook(URL_book, collection, status, user_bookcase)
