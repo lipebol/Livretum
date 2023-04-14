@@ -7,9 +7,9 @@ def encryptPath(directory, path, conn_type):
     fernet = Fernet(key)
     path = path.encode()
     encrypted = fernet.encrypt(path)
-    with open(f"{directory}/.path", "wb") as encrypt_file:
+    with open(f"{directory}/.mongodb", "wb") as encrypt_file:
         encrypt_file.write(encrypted)
-    os.chmod(f"{directory}/.path", 0o400)
-    with open(f"{directory}/.type", "w") as type_file:
+    os.chmod(f"{directory}/.mongodb", 0o400)
+    with open(f"{directory}/.type_mongodb", "w") as type_file:
         type_file.write(conn_type)
-    os.chmod(f"{directory}/.type", 0o400)
+    os.chmod(f"{directory}/.type_mongodb", 0o400)

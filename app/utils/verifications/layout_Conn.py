@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 def layout_Conn(
     directory, MongoDB_logo, user, len_pwd, addr, database, testMongoDB, version
 ):
-    conn_type = open(f"{directory}/.type").read().strip()
+    conn_type = open(f"{directory}/.type_mongodb").read().strip()
     if conn_type == "Local":
         layout_connMongoDB = [
             [sg.Text('')],

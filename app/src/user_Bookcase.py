@@ -55,10 +55,10 @@ def userBookcase():
             if user_bookcase != "":
                 directory, files = pathUser()
                 window_userBookcase.Hide()
-                if ".path" not in files:
+                if ".mongodb" not in files:
                     path, conn_type = bookcaseAuth(directory)
-                    if path == None or conn_type == None:
-                        return "Error"
+                    if path == "Exit" or conn_type == "Exit":
+                        return "Exit"
                         break
                 user, pwd, addr = authPath(directory, files)
                 if user == None or pwd == None or addr == None:

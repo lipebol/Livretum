@@ -25,7 +25,7 @@ def addItem(URL_book, collection, status, user_bookcase):
 
     database = f"{user_bookcase}_books"
     directory, files = pathUser()
-    conn_type = open(f"{directory}/.type").read().strip()
+    conn_type = open(f"{directory}/.type_mongodb").read().strip()
     user, pwd, addr = authPath(directory, files)
     MongoDB = getMongoDB(conn_type, user, pwd, addr, database)
     collection = MongoDB[collection]

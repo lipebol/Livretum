@@ -7,7 +7,7 @@ def dataFrame(user_bookcase):
 
     database = f"{user_bookcase}_books"
     directory, files = pathUser()
-    conn_type = open(f"{directory}/.type").read().strip()
+    conn_type = open(f"{directory}/.type_mongodb").read().strip()
     user, pwd, addr = authPath(directory, files)
 
     database = getMongoDB(conn_type, user, pwd, addr, database)
