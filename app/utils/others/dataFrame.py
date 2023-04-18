@@ -1,7 +1,8 @@
 import pandas as pd
-from utils.verifications.path_User import pathUser
-from utils.verifications.auth_Path import authPath
 from utils.others.get_MongoDB import getMongoDB
+from utils.verifications.auth_Path import authPath
+from utils.verifications.path_User import pathUser
+
 
 def dataFrame(user_bookcase):
 

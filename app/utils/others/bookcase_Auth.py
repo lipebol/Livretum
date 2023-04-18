@@ -1,5 +1,5 @@
-from utils.others.input_Auth import inputAuth
 from cpt.encr import encryptPath
+from utils.others.input_Auth import inputAuth
 
 
 def bookcaseAuth(directory):

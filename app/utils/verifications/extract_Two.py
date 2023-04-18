@@ -1,8 +1,7 @@
-import PySimpleGUI as sg
-from utils.verifications.scrape import Scrape
-import textwrap
-import requests
 import json
+import requests
+import textwrap
+from utils.verifications.scrape import Scrape
 
 
 def extractTwo(URL_book):
