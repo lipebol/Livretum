@@ -1,19 +1,21 @@
 import PySimpleGUI as sg
+from utils.window.screen import screen
 
 def fileFormat():
+
+    x, y = 0.3367496339677892, 0.234375
+    size_x, size_y, loc_x, loc_y = screen(x, y)
+
     buttonclose = sg.Button('', image_data=buttonclose_base64, 
             button_color=
             (
-                sg.theme_background_color(), 
-                # sg.theme_background_color()
+                sg.theme_background_color(),
             ),
-            #image_subsample=8: "divide" the size by.
-            #But the ideal size of the button icon is 24px.
             border_width=0, key='Exit')
 
     message = sg.Text(
-        "[❗] Forneça suas credenciais do MongoDB.\n\n      Em um 'arquivo.txt', informe:\n\n  usuário=senha=IP_ou_endereçodoCluster", 
-        font='Courier 14'
+        "[!] Forneça suas credenciais do MongoDB.\n\n      Em um 'arquivo.txt', informe:\n\n  usuário=senha=IP_ou_endereçodoCluster", 
+        font='Courier'
     )
    
     layout_fileFormat = [
@@ -24,13 +26,13 @@ def fileFormat():
 
     window_fileFormat = sg.Window( 
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
         layout=layout_fileFormat, 
-        size=(480, 190),
-        resizable = True,
+        size=(size_x, size_y),
+        resizable=True,
         grab_anywhere=True,
         alpha_channel=.9, 
-        no_titlebar=True
+        no_titlebar=True,
+        location=(loc_x, loc_y)
     )
 
     while True:

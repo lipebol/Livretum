@@ -1,19 +1,21 @@
 import PySimpleGUI as sg
+from utils.window.screen import screen
 
 def connError():
+
+    x, y = 0.3074670571010249, 0.15625
+    size_x, size_y, loc_x, loc_y = screen(x, y)
+
     buttonclose = sg.Button('', image_data=buttonclose_base64, 
             button_color=
             (
-                sg.theme_background_color(), 
-                # sg.theme_background_color()
+                sg.theme_background_color(),
             ),
-            #image_subsample=8: "divide" the size by.
-            #But the ideal size of the button icon is 24px.
             border_width=0, key='Exit')
 
     message = sg.Text(
-        "   [❌] Ocorreu um erro na conexão. \n(Verifique todos os dados e tente novamente.)", 
-        font='Courier 14'
+        "   [X] Ocorreu um erro na conexão. \nVerifique os dados e tente novamente.", 
+        font='Courier'
     )
    
     layout_connError = [
@@ -24,13 +26,13 @@ def connError():
 
     window_connError = sg.Window( 
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
         layout=layout_connError, 
-        size=(480, 120),
-        resizable = True,
+        size=(size_x, size_y),
+        resizable=True,
         grab_anywhere=True,
         alpha_channel=.9, 
-        no_titlebar=True
+        no_titlebar=True,
+        location=(loc_x, loc_y)
     )
 
     while True:

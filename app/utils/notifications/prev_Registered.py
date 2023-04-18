@@ -1,19 +1,21 @@
 import PySimpleGUI as sg
+from utils.window.screen import screen
 
 def prevRegistered():
+
+    x, y = 0.29282576866764276, 0.13020833333333334
+    size_x, size_y, loc_x, loc_y = screen(x, y)
+
     buttonclose = sg.Button('', image_data=buttonclose_base64, 
             button_color=
             (
-                sg.theme_background_color(), 
-                # sg.theme_background_color()
+                sg.theme_background_color(),
             ),
-            #image_subsample=8: "divide" the size by.
-            #But the ideal size of the button icon is 24px.
             border_width=0, key='Exit')
 
     message = sg.Text(
-        "[✔] Livro já cadastrado.", 
-        font='Courier 14'
+        "[*] Livro já cadastrado.", 
+        font='Courier'
     )
    
     layout_prevRegistered = [
@@ -24,13 +26,13 @@ def prevRegistered():
 
     window_prevRegistered = sg.Window( 
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
         layout=layout_prevRegistered, 
-        size=(400, 100),
-        resizable = True,
+        size=(size_x, size_y),
+        resizable=True,
         grab_anywhere=True,
         alpha_channel=.9, 
-        no_titlebar=True
+        no_titlebar=True,
+        location=(loc_x, loc_y)
     )
 
     while True:

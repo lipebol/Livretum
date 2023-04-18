@@ -1,19 +1,21 @@
 import PySimpleGUI as sg
+from utils.window.screen import screen
 
 def noFile():
+
+    x, y = 0.3806734992679356, 0.13020833333333334
+    size_x, size_y, loc_x, loc_y = screen(x, y)
+
     buttonclose = sg.Button('', image_data=buttonclose_base64, 
             button_color=
             (
-                sg.theme_background_color(), 
-                # sg.theme_background_color()
+                sg.theme_background_color(),
             ),
-            #image_subsample=8: "divide" the size by.
-            #But the ideal size of the button icon is 24px.
             border_width=0, key='Exit')
 
     message = sg.Text(
-        "[❌] Arquivo com credenciais não encontrado.\n        Informe o arquivo novamente.", 
-        font='Courier 14'
+        "[X] Arquivo com credenciais não encontrado.\n        Informe o arquivo novamente.", 
+        font='Courier'
     )
    
     layout_noFile = [
@@ -24,13 +26,13 @@ def noFile():
 
     window_noFile = sg.Window( 
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
         layout=layout_noFile, 
-        size=(520, 100),
-        resizable = True,
+        size=(size_x, size_y),
+        resizable=True,
         grab_anywhere=True,
         alpha_channel=.9, 
-        no_titlebar=True
+        no_titlebar=True,
+        location=(loc_x, loc_y)
     )
 
     while True:
