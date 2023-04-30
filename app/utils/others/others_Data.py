@@ -1,20 +1,21 @@
 import PySimpleGUI as sg
-from utils.window.location import location
 from utils.notifications.no_Data import noData
+from utils.window.icon import icon
+from utils.window.screen import screen
+
 
 def othersData():
 
     sg.theme('DarkGrey11')
 
-    x = 600
-    y = 440
-
-    size_x, size_y = location(x, y)
+    x, y = 0.43923865300146414, 0.5729166666666666
+    size_x, size_y, loc_x, loc_y = screen(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    question_collection = sg.Text("Coleção:", font='Courier 14')
-    collection_input = sg.InputText('', key="collection", size=(30), font='Courier 14')
-    question_status = sg.Text("Adquirido?", font='Courier 14')
+    question_collection = sg.Text("Coleção:", font='Courier')
+    collection_input = sg.InputText('', key="collection", size=(30), font='Courier', focus=True)
+    question_status = sg.Text("Adquirido?", font='Courier')
+    system_icon = icon()
 
     layout_othersData = [
         [sg.Text('')],
@@ -25,23 +26,23 @@ def othersData():
         [sg.Column([[collection_input]])],
         [sg.Text('')],
         [sg.Column([[question_status]])],
-        [sg.Checkbox("Sim", key='yes', font='Courier 14'),
-        sg.Checkbox("Não", key='no', font='Courier 14')],
+        [sg.Checkbox("Sim", key='yes', font='Courier'),
+        sg.Checkbox("Não", key='no', font='Courier')],
         [sg.Text('')],
-        [sg.Button("Enviar", font='Courier 12')],
+        [sg.Button("Enviar", font='Courier')],
         [sg.Text('')],
     ]
 
     window_othersData = sg.Window(
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
-        layout = layout_othersData,
-        size=(x, y),
+        icon=system_icon,
+        layout=layout_othersData,
+        size=(size_x, size_y),
         resizable = True,
         grab_anywhere=True,
         alpha_channel=.9,
         element_justification='c',
-        location=(size_x, size_y)
+        location=(loc_x, loc_y)
     )
 
     while True:

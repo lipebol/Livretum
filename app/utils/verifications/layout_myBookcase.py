@@ -10,26 +10,20 @@ def layoutmyBookcase(logo, cols, values):
             [sg.Text('')],
             [sg.Text('')],
             [sg.Text('')],
-            [sg.Text("[❗] Nenhum livro cadastrado.", font='Courier 14')],
+            [sg.Text("[❗] Nenhum livro cadastrado.", font='Courier')],
             [sg.Text('')],
             [sg.Text('')],
             [sg.Text('')],
             [sg.Text('')],
-            [sg.Button("Novo Livro", font='Courier 12'), 
-            sg.Button("🔄", font='Courier 12')],
-            [sg.Text('')],
-            [sg.Text("v 0.2", font='Courier 8')]
+            [sg.Button("Novo Livro", font='Courier')]
         ]
     else:
         layout_myBookcase = [
             [sg.Text('')],
             [sg.Column([[logo]])],
-            [sg.Table(values=values, headings=cols, auto_size_columns=True, font='Courier 12')],
+            [sg.Table(values=values, headings=cols, auto_size_columns=True, font='Courier')],
             [sg.Text('')],
-            [sg.Button("Novo Livro", font='Courier 12'),
-            sg.Button("🔄", font='Courier 12')],
-            [sg.Text('')],
-            [sg.Text("v 0.2", font='Courier 8')]
+            [sg.Button("Novo Livro", font='Courier')]
         ]
 
     return layout_myBookcase

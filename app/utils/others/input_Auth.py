@@ -1,21 +1,20 @@
 import PySimpleGUI as sg
-from utils.window.location import location
 from utils.notifications.file_Format import fileFormat
 from utils.notifications.no_Data import noData
+from utils.window.icon import icon
+from utils.window.screen import screen
 
 
 def inputAuth():
 
     sg.theme('DarkGrey11')
 
-    x = 500
-    y = 410
-
-    size_x, size_y = location(x, y)
+    x, y = 0.36603221083455345, 0.5338541666666666
+    size_x, size_y, loc_x, loc_y = screen(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    question_path = sg.Text("Onde está o 'arquivo.txt'?", font='Courier 14')
-    version = sg.Text("v 0.2", font='Courier 8')
+    question_path = sg.Text("Onde está o 'arquivo.txt'?", font='Courier')
+    system_icon = icon()
     fileFormat()
 
     layout_pathAuth = [
@@ -23,27 +22,25 @@ def inputAuth():
         [sg.Column([[logo]])],
         [sg.Text('')],
         [sg.Column([[question_path]])],
-        [sg.InputText("", key="pathAuthMongoDB", size=(26), font='Courier 12'),
-        sg.FileBrowse("Procurar", font='Courier 10')],
+        [sg.InputText("", key="pathAuthMongoDB", size=(26), font='Courier'),
+        sg.FileBrowse("Procurar", font='Courier')],
         [sg.Text('')],
-        [sg.Checkbox("Local", key='type_local', font='Courier 14'), 
-        sg.Checkbox("Atlas", key='type_atlas', font='Courier 14')],
+        [sg.Checkbox("Local", key='type_local', font='Courier'), 
+        sg.Checkbox("Atlas", key='type_atlas', font='Courier')],
         [sg.Text('')],
-        [sg.Button("OK", font='Courier 12')],
-        [sg.Text('')],
-        [sg.Column([[version]])]
+        [sg.Button("OK", font='Courier')]
     ]
 
     window_pathAuth = sg.Window(
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
+        icon=system_icon,
         layout=layout_pathAuth,
-        size=(x, y),
+        size=(size_x, size_y),
         resizable=True,
         grab_anywhere=True,
         alpha_channel=.9,
         element_justification='c',
-        location=(size_x, size_y)
+        location=(loc_x, loc_y)
     )
 
     while True:

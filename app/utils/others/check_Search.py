@@ -1,26 +1,26 @@
 import PySimpleGUI as sg
-from utils.window.location import location
 from utils.verifications.extract_One import extractOne
+from utils.window.icon import icon
+from utils.window.screen import screen
 
 
 def checkSearch(data, n, headers):
     
     sg.theme('DarkGrey11')
 
-    x = 600
-    y = 620
+    x, y = 0.43923865300146414, 0.8072916666666666
+    size_x, size_y, loc_x, loc_y = screen(x, y)
 
-    size_x, size_y = location(x, y)
-
-    URL_book, title, authors = extractOne(data, n, headers)
+    URL_book, title, authors, image = extractOne(data, n, headers)
+    system_icon = icon()
             
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    confirm_Book = sg.Text("É esse o livro?", font='Courier 14')
-    bookImage = sg.Image(filename='app/src/images/book.png')
-    textTitle = sg.Text(f"Nome: {title} ", font='Courier 14')
-    textAuthors = sg.Text(f"Autor(es): {authors} ", font='Courier 14')
-    buttonYes = sg.Button("Sim", key="Sim", font='Courier 12')
-    buttonNo = sg.Button("Não", key="Não", font='Courier 12')
+    confirm_Book = sg.Text("É esse o livro?", font='Courier')
+    bookImage = sg.Image(filename=image)
+    textTitle = sg.Text(f"Nome: {title} ", font='Courier')
+    textAuthors = sg.Text(f"Autor(es): {authors} ", font='Courier')
+    buttonYes = sg.Button("Sim", key="Sim", font='Courier')
+    buttonNo = sg.Button("Não", key="Não", font='Courier')
     
     layout_confirmSearch = [
         [sg.Text("")],
@@ -38,13 +38,13 @@ def checkSearch(data, n, headers):
 
     window_confirmSearch = sg.Window(
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
-        layout = layout_confirmSearch, 
-        size=(x, y),
+        icon=system_icon,
+        layout=layout_confirmSearch, 
+        size=(size_x, size_y),
         resizable = True,
         grab_anywhere=True,
         alpha_channel=.9,
-        location=(size_x, size_y)
+        location=(loc_x, loc_y)
     )
 
     while True:

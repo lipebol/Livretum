@@ -1,25 +1,24 @@
 import PySimpleGUI as sg
-from utils.window.location import location
-from utils.verifications.path_User import pathUser
+from utils.notifications.no_File import noFile
 from utils.others.bookcase_Auth import bookcaseAuth
 from utils.verifications.auth_Path import authPath
-from utils.notifications.no_File import noFile
 from utils.verifications.conn_Path import connPath
+from utils.verifications.path_User import pathUser
+from utils.window.icon import icon
+from utils.window.screen import screen
 
 
 def userBookcase():
 
     sg.theme('DarkGrey11')
 
-    x = 500
-    y = 360
-
-    size_x, size_y = location(x, y)
+    x, y = 0.36603221083455345, 0.46875
+    size_x, size_y, loc_x, loc_y = screen(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    question_user_bookcase = sg.Text("Quem é o dono da estante?", font='Courier 14')
-    user_bookcase = sg.InputText('', key="user_bookcase", size=(26), font='Courier 14')
-    version = sg.Text("v 0.2", font='Courier 8')
+    question_user_bookcase = sg.Text("Quem é o dono da estante?", font='Courier')
+    user_bookcase = sg.InputText('', key="user_bookcase", size=(26), font='Courier', focus=True)
+    system_icon = icon()
 
     layout_userBookcase = [ 
         [sg.Text('')],
@@ -28,21 +27,19 @@ def userBookcase():
         [sg.Column([[question_user_bookcase]])],
         [sg.Column([[user_bookcase]])],
         [sg.Text('')],
-        [sg.Button("Enviar", font='Courier 12')],
-        [sg.Text('')],
-        [sg.Column([[version]])]
+        [sg.Button("Enviar", font='Courier', bind_return_key=True)]
     ]
     
     window_userBookcase = sg.Window(
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
+        icon=system_icon,
         layout=layout_userBookcase,
-        size=(x, y),
+        size=(size_x, size_y),
         resizable=True,
         grab_anywhere=True,
         alpha_channel=.9,
         element_justification='c',
-        location=(size_x, size_y)
+        location=(loc_x, loc_y)
     )
 
     while True:

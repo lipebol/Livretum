@@ -1,7 +1,8 @@
 import PySimpleGUI as sg
-from utils.window.location import location
 import requests
 import json
+from utils.window.icon import icon
+from utils.window.screen import screen
 
 
 def searchInput():
@@ -10,15 +11,13 @@ def searchInput():
     
     sg.theme('DarkGrey11')
 
-    x = 400
-    y = 390
-
-    size_x, size_y = location(x, y)
+    x, y = 0.29282576866764276, 0.46875
+    size_x, size_y, loc_x, loc_y = screen(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    search = sg.Text("Autor ou Assunto: ", font='Courier 14')
-    searchItem = sg.InputText('', key="nameBook", size=(26), font='Courier 14')
-    version = sg.Text("v 0.2", font='Courier 8')
+    search = sg.Text("Autor ou Assunto: ", font='Courier')
+    searchItem = sg.InputText('', key="nameBook", size=(26), font='Courier', focus=True)
+    system_icon = icon()
 
     layout_searchInput = [
         [sg.Text('')],
@@ -28,21 +27,19 @@ def searchInput():
         [sg.Column([[search]])],
         [sg.Column([[searchItem]])],
         [sg.Text('')],
-        [sg.Button("Pesquisar", font='Courier 12')],
-        [sg.Text('')],
-        [sg.Column([[version]])]
+        [sg.Button("Pesquisar", font='Courier', bind_return_key=True)] #bind_return_key = Enter
     ]
 
     window_searchInput = sg.Window(
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
-        layout = layout_searchInput,
-        size=(x, y),
-        resizable = True,
+        icon=system_icon,
+        layout=layout_searchInput,
+        size=(size_x, size_y),
+        resizable=True,
         grab_anywhere=True,
         alpha_channel=.9,
         element_justification='c',
-        location=(size_x, size_y)
+        location=(loc_x, loc_y)
     )
 
     while True:

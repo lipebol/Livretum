@@ -1,51 +1,52 @@
 import PySimpleGUI as sg
-from utils.window.location import location
-from utils.verifications.layout_recordBook import layoutrecordBook
-from utils.others.add_Item import addItem
-from utils.notifications.prev_Registered import prevRegistered
-from utils.notifications.item_Added import itemAdded
 # import json
-import os
+from utils.notifications.item_Added import itemAdded
+from utils.notifications.prev_Registered import prevRegistered
+from utils.others.add_Item import addItem
+from utils.verifications.layout_recordBook import layoutrecordBook
+from utils.window.icon import icon
+from utils.window.screen import screen
 
 
-def queryNeo4j(query):
-    file = open('book.json')
-    docjson = json.load(file)
-    return query.run("""
-    WITH $docjson as data
-    UNWIND  data.título AS livro
-    MERGE (p:Autor {nome: data.autor})
-    MERGE (c: Coleção {nome: data.coleção})
-    MERGE (b:Livro {título: livro})
-    SET b.id_MongoDB = data._id, b.páginas = data.páginas, b.idioma = data.idioma, b.dt_pub = data.data_da_publicação
-    MERGE (e:Editora {nome: data.editora})
-    MERGE (p)-[:ESCREVEU]->(b)
-    MERGE (e)-[:PUBLICOU]->(b)
-    MERGE (b)-[:COLEÇÃO]->(c)
-    """, docjson = docjson
-    )
+# def queryNeo4j(query):
+#     file = open('book.json')
+#     docjson = json.load(file)
+#     return query.run("""
+#     WITH $docjson as data
+#     UNWIND  data.título AS livro
+#     MERGE (p:Autor {nome: data.autor})
+#     MERGE (c: Coleção {nome: data.coleção})
+#     MERGE (b:Livro {título: livro})
+#     SET b.id_MongoDB = data._id, b.páginas = data.páginas, b.idioma = data.idioma, b.dt_pub = data.data_da_publicação
+#     MERGE (e:Editora {nome: data.editora})
+#     MERGE (p)-[:ESCREVEU]->(b)
+#     MERGE (e)-[:PUBLICOU]->(b)
+#     MERGE (b)-[:COLEÇÃO]->(c)
+#     """, docjson = docjson
+#     )
+
 
 def recordBook(URL_book, collection, status, user_bookcase):
 
     sg.theme('DarkGrey11')
 
-    x = 600
-    y = 640
+    x, y = 0.43923865300146414, 0.8333333333333334
+    size_x, size_y, loc_x, loc_y = screen(x, y)
 
-    size_x, size_y = location(x, y)
+    system_icon = icon()
 
     layout_recordBook = layoutrecordBook(URL_book, collection, status)
 
     window_recordBook = sg.Window(
         "Livretum",
-        icon='app/src/images/icon_Livretum.png',
-        layout = layout_recordBook,
-        size=(x, y),
-        resizable = True,
+        icon=system_icon,
+        layout=layout_recordBook,
+        size=(size_x, size_y),
+        resizable=True,
         grab_anywhere=True,
         alpha_channel=.9,
         element_justification='c',
-        location=(size_x, size_y)
+        location=(loc_x, loc_y)
     )
 
     while True:
@@ -55,8 +56,6 @@ def recordBook(URL_book, collection, status, user_bookcase):
         if event == "Cadastrar":
             result = addItem(URL_book, collection, status, user_bookcase)
             window_recordBook.Hide()
-            os.remove('app/src/images/book.jpeg')
-            os.remove('app/src/images/book.png')
             if result == "prev_Registered":
                 prevRegistered()
                 break
