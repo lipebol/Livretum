@@ -3,7 +3,7 @@ import os
 
 def gen():
     HOME = os.path.expanduser('~')
-    dirdocs_Livretum = f"{HOME}/.docs_Livretum"
+    dirdocs_Livretum = f"{HOME}/.livretum"
     if not os.path.isdir(dirdocs_Livretum):
         os.makedirs(dirdocs_Livretum)
     os.chmod(dirdocs_Livretum, 0o700)
