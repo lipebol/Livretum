@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 # import json
 from utils.notifications.item_Added import itemAdded
 from utils.notifications.prev_Registered import prevRegistered
+from utils.notifications.up_Registered import upRegistered
 from utils.others.add_Item import addItem
 from utils.verifications.layout_recordBook import layoutrecordBook
 from utils.window.icon import icon
@@ -58,6 +59,9 @@ def recordBook(URL_book, collection, status, user_bookcase):
             window_recordBook.Hide()
             if result == "prev_Registered":
                 prevRegistered()
+                break
+            if result == "up_Registered":
+                upRegistered()
                 break
             if result == "item_Added":
                 itemAdded()
