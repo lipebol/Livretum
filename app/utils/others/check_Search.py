@@ -8,10 +8,10 @@ def checkSearch(data, n, headers):
     
     sg.theme('DarkGrey11')
 
-    x, y = 0.43923865300146414, 0.8072916666666666
+    x, y = 0.43923865300146414, 0.859375
     size_x, size_y, loc_x, loc_y = screen(x, y)
 
-    URL_book, title, authors, image = extractOne(data, n, headers)
+    URL_book, title, authors, isbn_10, isbn_13, image = extractOne(data, n, headers)
     system_icon = icon()
             
     logo = sg.Image(filename='app/src/images/Livretum.png')
@@ -19,8 +19,10 @@ def checkSearch(data, n, headers):
     bookImage = sg.Image(filename=image)
     textTitle = sg.Text(f"Nome: {title} ", font='Courier')
     textAuthors = sg.Text(f"Autor(es): {authors} ", font='Courier')
-    buttonYes = sg.Button("Sim", key="Sim", font='Courier')
-    buttonNo = sg.Button("Não", key="Não", font='Courier')
+    textISBN10 = sg.Text(f"ISBN-10: {isbn_10}", font='Courier')
+    textISBN13 = sg.Text(f"ISBN-13: {isbn_13} ", font='Courier')
+    buttonYes = sg.Button("Sim", font='Courier')
+    buttonNo = sg.Button("Não", font='Courier')
     
     layout_confirmSearch = [
         [sg.Text("")],
@@ -31,6 +33,7 @@ def checkSearch(data, n, headers):
         [sg.Text("")],
         [sg.Column([[textTitle]])],
         [sg.Column([[textAuthors]])],
+        [sg.Column([[textISBN10]]), sg.Column([[textISBN13]])],
         [sg.Text("")],
         [sg.Column([[buttonYes]], justification='center'), sg.Column([[buttonNo]])],
         [sg.Text("")],

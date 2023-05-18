@@ -10,6 +10,8 @@ def extractOne(data, n, headers):
 
     URL_book = data['items'][n]['selfLink'] + "?fields=volumeInfo"
     selector = data['items'][n]['volumeInfo']
+    isbn13_selector = selector['industryIdentifiers'][0]['identifier']
+    isbn10_selector = selector['industryIdentifiers'][1]['identifier']
     if 'subtitle' not in selector:
         title = "".join(data['items'][n]['volumeInfo']['title'])
     else:
@@ -23,6 +25,14 @@ def extractOne(data, n, headers):
         authors = ", ".join(data['items'][n]['volumeInfo']['authors'])
         authors = wrapperII.fill(text=authors)
         authors = "".join(authors)
+    if isbn10_selector:
+        isbn_10 = isbn10_selector
+    else:
+        isbn_10 = None
+    if isbn13_selector:
+        isbn_13 = isbn13_selector
+    else:
+        isbn_13 = None
     if 'imageLinks' not in selector:
         image = 'app/src/images/noimage.png'
     else:
@@ -39,4 +49,4 @@ def extractOne(data, n, headers):
             else:
                 image = 'app/src/images/book.png'
     
-    return URL_book, title, authors, image
+    return URL_book, title, authors, isbn_10, isbn_13, image
