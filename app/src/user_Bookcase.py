@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from utils.notifications.file_Format import fileFormat
 from utils.notifications.no_File import noFile
 from utils.others.bookcase_Auth import bookcaseAuth
 from utils.verifications.auth_Path import authPath
@@ -58,14 +59,20 @@ def userBookcase():
                         return "Exit"
                         break
                 user, pwd, addr = authPath(directory, files)
-                if user == None or pwd == None or addr == None:
-                    noFile()
-                    return "Error"
-                    break
-                result = connPath(directory, files, user_bookcase, user, pwd, addr)
-                if result == "Exit":
-                    return "Exit"
-                if result == True:
-                    return "Error"
-                
-                return user_bookcase
+                if user != pwd != addr:
+                    result = connPath(directory, files, user_bookcase, user, pwd, addr)
+                    if result == "Exit":
+                        return "Exit"
+                    if result == True:
+                        return "Error"
+                    
+                    return user_bookcase
+                else:
+                    if user == pwd == addr == "Not Found Error":
+                        noFile()
+                        return "Error"
+                        break
+                    if user == pwd == addr == "File Error":
+                        fileFormat()
+                        return "Error"
+                        break
