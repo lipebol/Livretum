@@ -1,9 +1,12 @@
 import PySimpleGUI as sg
 from utils.window.screen import screen
+import webbrowser
 
-def fileFormat():
+def noMongoDB():
 
-    x, y = 0.40995607613469986, 0.234375
+    sg.theme('DarkGrey11')
+
+    x, y = 0.3367496339677892, 0.20833333333333334
     size_x, size_y, loc_x, loc_y = screen(x, y)
 
     buttonclose = sg.Button('', image_data=buttonclose_base64, 
@@ -13,30 +16,25 @@ def fileFormat():
             ),
             border_width=0, key='Exit')
 
-    message1 = sg.Text(
-        "[!] Coloque suas credenciais em um 'arquivo.txt'.", 
+    message = sg.Text(
+        "Como criar um Banco de Dados com MongoDB?", 
         font='Courier'
     )
-    message2 = sg.Text(
-        "Neste formato:", 
-        font='Courier'
-    )
-    message3 = sg.Text(
-        "  usuário::senha::IP_ou_endereçodoCluster", 
+    content = sg.Button(
+        "Abrir no Navegador", 
         font='Courier'
     )
    
-    layout_fileFormat = [
+    layout_noMongoDB = [
         [sg.Column([[buttonclose]], justification='right')],
-        [sg.Column([[message1]], justification='center')],
-        [sg.Column([[message2]], justification='center')],
-        [sg.Column([[message3]], justification='center')],
+        [sg.Column([[message]], justification='center')],
+        [sg.Column([[content]], justification='center')],
         [sg.Text('')],
     ]
 
-    window_fileFormat = sg.Window( 
+    window_noMongoDB = sg.Window( 
         "Livretum",
-        layout=layout_fileFormat, 
+        layout=layout_noMongoDB, 
         size=(size_x, size_y),
         resizable=True,
         grab_anywhere=True,
@@ -46,9 +44,12 @@ def fileFormat():
     )
 
     while True:
-        event, values = window_fileFormat.read()
+        event, values = window_noMongoDB.read()
         if event == 'Exit':
-            window_fileFormat.Hide()
+            window_noMongoDB.Hide()
+            break
+        if event == "Abrir no Navegador":
+            webbrowser.open("https://www.mongodb.com/pt-br/basics/create-database")
             break
 
 
