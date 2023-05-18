@@ -4,7 +4,7 @@ import textwrap
 from utils.verifications.scrape import Scrape
 
 
-def extractTwo(URL_book):
+def extractTwo(URL_book, status):
     #   Agent based on Device:"https://deviceatlas.com/blog/list-of-user-agent-strings"   
     headers = {'User-Agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1"}
     
@@ -65,4 +65,18 @@ def extractTwo(URL_book):
 
     rating, price = Scrape(title)
 
-    return title, authors, pub_company, pub_date, isbn_10, isbn_13, pages, categories, rating, price
+    item = {
+        "categoria(s)": categories,
+        "título": title,
+        "autor(es)": authors,
+        "editora": pub_company,
+        "data_da_publicação": pub_date,
+        "isbn_10": isbn_10,
+        "isbn_13": isbn_13,
+        "páginas": pages,
+        "Adquirido?": status,
+        "avaliação": rating,
+        "preço": price,
+    }
+
+    return item
