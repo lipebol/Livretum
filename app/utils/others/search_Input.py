@@ -49,7 +49,7 @@ def searchInput():
             break
         if event == "Pesquisar":
             nameBook = values["nameBook"]
-            API = f"https://www.googleapis.com/books/v1/volumes?fields=items(selfLink,volumeInfo(title,subtitle,authors,imageLinks))&q={nameBook}&maxResults=40&printType=books"
+            API = f"https://www.googleapis.com/books/v1/volumes?fields=items(selfLink,volumeInfo(title,subtitle,authors,imageLinks,industryIdentifiers))&q={nameBook}&maxResults=40&printType=books"
             r = requests.get(url=API, headers=headers)
             if r.status_code == 200:
                 data = json.loads(r.content)
