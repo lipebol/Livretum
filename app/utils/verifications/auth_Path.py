@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-import os
+from utils.others.delete_Files import deleteFiles
 
 
 def authPath(directory, files):
@@ -10,21 +10,24 @@ def authPath(directory, files):
             encrypted = encrypt_file.read()
         fernet = Fernet(key)
         auth_path = fernet.decrypt(encrypted).decode()
-        auth = open(auth_path).read().strip().split("=")
+        auth = open(auth_path).read().strip()
     except FileNotFoundError:
-        if ".mongodb" in files:
-            os.remove(f"{directory}/.mongodb")
-        if ".type_mongodb" in files:
-            os.remove(f"{directory}/.type_mongodb")
-        if ".test_mongodb" in files:    
-            os.remove(f"{directory}/.test_mongodb")
-        user = None
-        pwd = None
-        addr = None
+        deleteFiles(directory, files)
+        user = "Not Found Error"
+        pwd = "Not Found Error"
+        addr = "Not Found Error"
     else:
-        user = auth[0]
-        pwd = auth[1]
-        addr = auth[2]
+        i = str.count(auth, "::")
+        if i != 2:
+            deleteFiles(directory, files)
+            user = "File Error"
+            pwd = "File Error"
+            addr = "File Error"
+        else:
+            auth = auth.split("::")
+            user = auth[0]
+            pwd = auth[1]
+            addr = auth[2]
 
     return user, pwd, addr
             
