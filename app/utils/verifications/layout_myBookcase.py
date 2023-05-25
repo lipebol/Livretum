@@ -18,12 +18,21 @@ def layoutmyBookcase(logo, cols, values):
             [sg.Button("Novo Livro", font='Courier')]
         ]
     else:
+        button_new = sg.Button("Novo Livro", font='Courier')
+        button_status = sg.Button("Adquirido?", font='Courier')
         layout_myBookcase = [
             [sg.Text('')],
             [sg.Column([[logo]])],
-            [sg.Table(values=values, headings=cols, auto_size_columns=True, font='Courier')],
+            [sg.Table(
+                values=values, 
+                headings=cols, 
+                auto_size_columns=True, 
+                font='Courier', 
+                justification='center'
+                )
+            ],
             [sg.Text('')],
-            [sg.Button("Novo Livro", font='Courier')]
+            [sg.Column([[button_new]]), sg.Column([[button_status]])]
         ]
 
     return layout_myBookcase
