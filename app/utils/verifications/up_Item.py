@@ -1,41 +1,32 @@
 
 
 def upItem(ack_item, categories, rating, price, collection):
-
-    up_categories = ack_item["categoria(s)"] == categories
+    
+    locate = {
+        '_id': ack_item['_id']
+        }
+    up_categories = ack_item['categoria(s)'] == categories
     if up_categories == False:
-        ack_categories = ack_item["categoria(s)"]
-        down = {
-            "categoria(s)": ack_categories
-        }
         up = {
-            "$set": {"categoria(s)": categories}
+            "$set": {'categoria(s)': categories}
         }
-        upCategories = collection.update_one(down, up)
+        upCategories = collection.update_one(locate, up)
         if upCategories.modified_count == 1:
             up_categories = "categories"
-    up_rating = ack_item["avaliação"] == rating
+    up_rating = ack_item['avaliação'] == rating
     if up_rating == False:
-        ack_rating = ack_item["avaliação"]
-        down = {
-            "avaliação": ack_rating
-        }
         up = {
-            "$set": {"avaliação": rating}
+            "$set": {'avaliação': rating}
         }
-        upRating = collection.update_one(down, up)
+        upRating = collection.update_one(locate, up)
         if upRating.modified_count == 1:
             up_rating = "rating"
-    up_price = ack_item["preço"] == price
+    up_price = ack_item['preço'] == price
     if up_price == False:
-        ack_price = ack_item["preço"]
-        down = {
-            "preço": ack_price
-        }
         up = {
-            "$set": {"preço": price}
+            "$set": {'preço': price}
         }
-        upPrice = collection.update_one(down, up)
+        upPrice = collection.update_one(locate, up)
         if upPrice.modified_count == 1:
             up_price = "price"
     
