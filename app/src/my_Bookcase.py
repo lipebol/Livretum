@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import os
 from utils.others.cadaster_Book import cadasterBook
+from utils.others.changed_Status import changedStatus
 from utils.others.dataFrame import dataFrame
 from utils.verifications.layout_myBookcase import layoutmyBookcase
 from utils.window.icon import icon
@@ -11,7 +12,7 @@ def myBookcase(user_bookcase):
 
     sg.theme('DarkGrey11')
 
-    x, y = 0.4538799414348463, 0.5989583333333334
+    x, y = 0.4685212298682284, 0.5989583333333334
     size_x, size_y, loc_x, loc_y = screen(x, y)
     
     logo = sg.Image(filename='app/src/images/Livretum.png')
@@ -19,6 +20,7 @@ def myBookcase(user_bookcase):
     system_icon = icon()
     
     layout_myBookcase = layoutmyBookcase(logo, cols, values)
+    itens = values #necessário porque a variável 'values' muda de valor logo abaixo;
         
     window_myBookcase = sg.Window(
         "Livretum",
@@ -46,5 +48,9 @@ def myBookcase(user_bookcase):
                 os.remove('app/src/images/book.png')
             return "Reload"
             break
-
-        
+        if event == "Adquirido?":
+            changes = changedStatus(user_bookcase, itens)
+            if changes != "Exit":
+                window_myBookcase.Hide()
+                return "Reload"
+                break
