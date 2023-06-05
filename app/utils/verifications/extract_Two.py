@@ -15,8 +15,10 @@ def extractTwo(URL_book, status):
     if r.status_code == 200:
         book = json.loads(r.content)
         selector = book['volumeInfo']
-        isbn10_selector = book['volumeInfo']['industryIdentifiers'][0]['identifier']
-        isbn13_selector = book['volumeInfo']['industryIdentifiers'][1]['identifier']
+        isbn_selector = isbn10 = isbn13 = "Not Found"
+        if 'industryIdentifiers' in selector:
+            if selector['industryIdentifiers'][0]['type'] in ("ISBN_10", "ISBN_13"):
+                isbn_selector = selector['industryIdentifiers']
         if 'subtitle' not in selector:
             title = book['volumeInfo']['title']
         else:
@@ -40,14 +42,14 @@ def extractTwo(URL_book, status):
             pub_date = None
         else:
             pub_date = book['volumeInfo']['publishedDate']
-        if isbn10_selector:
-            isbn_10 = isbn10_selector
-        else:
-            isbn_10 = None
-        if isbn13_selector:
-            isbn_13 = isbn13_selector
-        else:
-            isbn_13 = None
+        if isbn_selector != "Not Found":
+            i = 0
+            while i < len(isbn_selector):
+                if len(isbn_selector[i]['identifier']) == 10:
+                    isbn10 = isbn_selector[i]['identifier']
+                else:
+                    isbn13 = isbn_selector[i]['identifier']
+                i +=1
         if 'pageCount' not in selector:
             pages = None
         else:
@@ -71,8 +73,8 @@ def extractTwo(URL_book, status):
         "autor(es)": authors,
         "editora": pub_company,
         "data_da_publicação": pub_date,
-        "isbn_10": isbn_10,
-        "isbn_13": isbn_13,
+        "isbn_10": isbn10,
+        "isbn_13": isbn13,
         "páginas": pages,
         "Adquirido?": status,
         "avaliação": rating,

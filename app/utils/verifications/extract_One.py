@@ -10,8 +10,10 @@ def extractOne(data, n, headers):
 
     URL_book = data['items'][n]['selfLink'] + "?fields=volumeInfo"
     selector = data['items'][n]['volumeInfo']
-    isbn13_selector = selector['industryIdentifiers'][0]['identifier']
-    isbn10_selector = selector['industryIdentifiers'][1]['identifier']
+    isbn_selector = isbn10 = isbn13 = "Not Found"
+    if 'industryIdentifiers' in selector:
+        if selector['industryIdentifiers'][0]['type'] in ("ISBN_10", "ISBN_13"):
+            isbn_selector = selector['industryIdentifiers']
     if 'subtitle' not in selector:
         title = "".join(data['items'][n]['volumeInfo']['title'])
     else:
@@ -25,14 +27,14 @@ def extractOne(data, n, headers):
         authors = ", ".join(data['items'][n]['volumeInfo']['authors'])
         authors = wrapperII.fill(text=authors)
         authors = "".join(authors)
-    if isbn10_selector:
-        isbn_10 = isbn10_selector
-    else:
-        isbn_10 = None
-    if isbn13_selector:
-        isbn_13 = isbn13_selector
-    else:
-        isbn_13 = None
+    if isbn_selector != "Not Found":
+        i = 0
+        while i < len(isbn_selector):
+            if len(isbn_selector[i]['identifier']) == 10:
+                isbn10 = isbn_selector[i]['identifier']
+            else:
+                isbn13 = isbn_selector[i]['identifier']
+            i +=1
     if 'imageLinks' not in selector:
         image = 'app/src/images/noimage.png'
     else:
@@ -49,4 +51,4 @@ def extractOne(data, n, headers):
             else:
                 image = 'app/src/images/book.png'
     
-    return URL_book, title, authors, isbn_10, isbn_13, image
+    return URL_book, title, authors, isbn10, isbn13, image
