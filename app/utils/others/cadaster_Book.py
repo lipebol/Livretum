@@ -16,4 +16,5 @@ def cadasterBook(user_bookcase):
             while collection == "Repeat" or status == "Repeat":
                 collection, status = othersData()
             if collection != "Exit" or status != "Exit":
-                recordBook(URL_book, collection, status, user_bookcase)
+                result = recordBook(URL_book, collection, status, user_bookcase)
+                return result

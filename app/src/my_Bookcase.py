@@ -17,10 +17,12 @@ def myBookcase(user_bookcase):
     
     logo = sg.Image(filename='app/src/images/Livretum.png')
     cols, values = dataFrame(user_bookcase)
+    if cols == values == "Exit":
+        return "Exit"
     system_icon = icon()
     
     layout_myBookcase = layoutmyBookcase(logo, cols, values)
-    itens = values #necessário porque a variável 'values' muda de valor logo abaixo;
+    itens = values # necessário porque a variável 'values' muda de valor logo abaixo;
         
     window_myBookcase = sg.Window(
         "Livretum",
@@ -41,12 +43,12 @@ def myBookcase(user_bookcase):
             break
         if event == "Novo Livro":
             window_myBookcase.Hide()
-            cadasterBook(user_bookcase)
+            result = cadasterBook(user_bookcase)
             directory = 'app/src/images/'
             files = os.listdir(directory)
             if "book.png" in files:
                 os.remove('app/src/images/book.png')
-            return "Reload"
+            return result
             break
         if event == "Adquirido?":
             changes = changedStatus(user_bookcase, itens)
