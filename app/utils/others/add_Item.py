@@ -10,6 +10,8 @@ def addItem(URL_book, collection, status, user_bookcase):
     item = extractTwo(URL_book, status)
     
     MongoDB = connDatabase(user_bookcase)
+    if MongoDB == "Error":
+        return "Exit"
     collection = MongoDB[collection]
     ack_item = ackItem(
         item["título"], 

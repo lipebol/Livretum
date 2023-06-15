@@ -5,6 +5,8 @@ from utils.verifications.conn_Database import connDatabase
 def dataFrame(user_bookcase):
 
     MongoDB = connDatabase(user_bookcase)
+    if MongoDB == "Error":
+        return "Exit", "Exit"
     collections = MongoDB.list_collection_names()
     list_collection = []
     for i in collections:

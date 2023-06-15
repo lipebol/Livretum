@@ -3,6 +3,8 @@ from utils.verifications.conn_Database import connDatabase
 def idChanged(user_bookcase, item):
 
     MongoDB = connDatabase(user_bookcase)
+    if MongoDB == "Error":
+        return "Exit"
     collections = MongoDB.list_collection_names()
     for name in collections:
         for i in MongoDB[name].find():
