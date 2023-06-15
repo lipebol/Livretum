@@ -1,19 +1,17 @@
-from utils.others.conn_MongoDB import connMongoDB
 import os
+from utils.others.delete_Files import deleteFiles
+from utils.others.testing_Conn import testingConn
+from utils.verifications.path_User import pathUser
 
-def connPath(directory, files, user_bookcase, user, pwd, addr):
-    result = user_bookcase
+
+def connPath(user_bookcase, user, pwd, addr):
+    directory, files = pathUser() # necessário para atualizar os arquivos que estão no dir;
     if ".test_mongodb" not in files:
-        test, conn_error = connMongoDB(directory, user_bookcase, user, pwd, addr)
-        result = conn_error
-        if test == "Exit" or conn_error == "Exit":
-            pass
-        if test == True:
-            test = "OK"
+        conn = testingConn(directory, user_bookcase, user, pwd, addr)
+        if conn == "OK":
             with open(f"{directory}/.test_mongodb", "w") as test_file:
-                test_file.write(test)
+                test_file.write(conn)
             os.chmod(f"{directory}/.test_mongodb", 0o400)
-        if conn_error == True:
-            os.remove(f"{directory}/.mongodb")
-            os.remove(f"{directory}/.type_mongodb")
-    return result
+        if conn in ("Exit", "Error"):
+            deleteFiles(directory, files)
+        return conn

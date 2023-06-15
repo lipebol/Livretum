@@ -1,6 +1,4 @@
 import PySimpleGUI as sg
-from utils.notifications.file_Format import fileFormat
-from utils.notifications.no_File import noFile
 from utils.others.bookcase_Auth import bookcaseAuth
 from utils.verifications.auth_Path import authPath
 from utils.verifications.conn_Path import connPath
@@ -18,7 +16,8 @@ def userBookcase():
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
     question_user_bookcase = sg.Text("Quem é o dono da estante?", font='Courier')
-    user_bookcase = sg.InputText('', key="user_bookcase", size=(26), font='Courier', focus=True)
+    user_bookcase = sg.InputText('', key="user_bookcase", size=(20), font='Courier', focus=True)
+    directory, files = pathUser()
     system_icon = icon()
 
     layout_userBookcase = [ 
@@ -51,28 +50,20 @@ def userBookcase():
         if event == "Enviar":
             user_bookcase = values["user_bookcase"]
             if user_bookcase != "":
-                directory, files = pathUser()
                 window_userBookcase.Hide()
                 if ".mongodb" not in files:
-                    path, conn_type = bookcaseAuth(directory)
-                    if path == "Exit" or conn_type == "Exit":
-                        return "Exit"
+                    bookcaseStatus = bookcaseAuth(directory)
+                    if bookcaseStatus == "Exit":
+                        return bookcaseStatus
                         break
-                user, pwd, addr = authPath(directory, files)
+                user, pwd, addr = authPath()
                 if user != pwd != addr:
-                    result = connPath(directory, files, user_bookcase, user, pwd, addr)
-                    if result == "Exit":
-                        return "Exit"
-                    if result == True:
-                        return "Error"
-                    
+                    conn = connPath(user_bookcase, user, pwd, addr)
+                    if conn in ("Exit", "Error"):
+                        return conn
+                        break
                     return user_bookcase
+                    break
                 else:
-                    if user == pwd == addr == "Not Found Error":
-                        noFile()
-                        return "Error"
-                        break
-                    if user == pwd == addr == "File Error":
-                        fileFormat()
-                        return "Error"
-                        break
+                    return "Error"
+                    break

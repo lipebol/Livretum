@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
-from utils.notifications.file_Format import fileFormat
 from utils.notifications.no_Data import noData
+from utils.verifications.separator_Auth import separatorAuth
 from utils.window.icon import icon
 from utils.window.screen import screen
 
@@ -21,8 +21,8 @@ def inputAuth():
         [sg.Column([[logo]])],
         [sg.Text('')],
         [sg.Column([[question_path]])],
-        [sg.InputText("", key="inputAuth", size=(26), font='Courier'),
-        sg.FileBrowse("Procurar", font='Courier')],
+        [sg.InputText("", key="inputAuth", size=(20), font='Courier'),
+        sg.FileBrowse("Procurar", font='Courier', file_types=(("", "*.txt"),))],
         [sg.Text('')],
         [sg.Checkbox("Local", key='type_local', font='Courier'), 
         sg.Checkbox("Atlas", key='type_atlas', font='Courier')],
@@ -55,13 +55,12 @@ def inputAuth():
         else:
             if event == "OK":
                 path = values["inputAuth"]
-                auth = open(path).read().strip()
-                i = str.count(auth, "::")
-                if i != 2:
-                    fileFormat()
-                    return "Repeat", "Repeat"
-                    break
-                else:
+                try:
+                    auth = open(path).read().strip()
+                except (UnicodeDecodeError):
+                    return "Exit", "Exit"
+                separator = separatorAuth(auth)
+                if separator == True:
                     type_local = values["type_local"]
                     type_atlas = values["type_atlas"]
                     if type_local == True:
@@ -72,3 +71,7 @@ def inputAuth():
                         conn_type = "Atlas"
                         return path, conn_type
                         break
+                else:
+                    return "Exit", "Exit"
+                    break
+                    
