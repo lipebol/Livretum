@@ -55,18 +55,20 @@ def recordBook(URL_book, collection, status, user_bookcase):
         if event == sg.WIN_CLOSED:
             break
         if event == "Cadastrar":
-            result = addItem(URL_book, collection, status, user_bookcase)
             window_recordBook.Hide()
-            if result == "prev_Registered":
-                prevRegistered()
-                break
-            if result == "up_Registered":
-                upRegistered()
-                break
-            if result == "item_Added":
-                itemAdded()
-                break
-                
+            result = addItem(URL_book, collection, status, user_bookcase)
+            if result != "Exit":
+                if result == "prev_Registered":
+                    prevRegistered()
+                if result == "up_Registered":
+                    upRegistered()
+                if result == "item_Added":
+                    itemAdded()
+
+                result = "Reload"
+
+            return result
+            break
     #         CONNECTION_STRING = "neo4j://{}:7687".format(hostNeo4j)
     #         connection = GraphDatabase.driver(CONNECTION_STRING, auth=(userNeo4j, passNeo4j))
     #         with connection.session() as session:

@@ -61,10 +61,13 @@ def ackId(user_bookcase, item):
                 return "Exit"
                 break
             if event == "Sim":
-                result = idChanged(user_bookcase, item)
-                if result == "Done!":
+                changed = idChanged(user_bookcase, item)
+                if changed != "Exit":
                     statusChanged()
                     return "Reload"
+                    break
+                else:
+                    return "Exit"
                     break
 
 
