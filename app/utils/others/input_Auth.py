@@ -47,14 +47,13 @@ def inputAuth():
         if event == sg.WIN_CLOSED:
             return "Exit", "Exit"
             break
-        window_inputAuth.Hide()
-        if values["inputAuth"] == "" or values["type_local"] == False and values["type_atlas"] == False:
-            noData()
-            return "Repeat", "Repeat"
-            break
-        else:
-            if event == "OK":
-                path = values["inputAuth"]
+        if event == "OK":
+            path = values["inputAuth"]
+            type =  values["type_local"] == False and values["type_atlas"] == False
+            if path == "" or type == True:
+                noData()
+            else:
+                window_inputAuth.Hide()
                 try:
                     auth = open(path).read().strip()
                 except (UnicodeDecodeError):
