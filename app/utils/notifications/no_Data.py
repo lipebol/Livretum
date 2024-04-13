@@ -3,7 +3,7 @@ from utils.window.screen import screen
 
 def noData():
 
-    x, y = 0.29282576866764276, 0.13020833333333334
+    x, y = 0.29282576866764276, 0.14322916666666666
     size_x, size_y, loc_x, loc_y = screen(x, y)
 
     buttonclose = sg.Button('', image_data=buttonclose_base64, 
@@ -30,7 +30,6 @@ def noData():
         size=(size_x, size_y),
         resizable=True,
         grab_anywhere=True,
-        alpha_channel=.9, 
         no_titlebar=True,
         location=(loc_x, loc_y)
     )
