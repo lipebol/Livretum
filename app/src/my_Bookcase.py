@@ -12,7 +12,7 @@ def myBookcase(user_bookcase):
 
     sg.theme('DarkGrey11')
 
-    x, y = 0.4685212298682284, 0.5989583333333334
+    x, y = 0.541727672035139, 0.5989583333333334
     size_x, size_y, loc_x, loc_y = screen(x, y)
     
     logo = sg.Image(filename='app/src/images/Livretum.png')
@@ -43,12 +43,12 @@ def myBookcase(user_bookcase):
             break
         if event == "Novo Livro":
             window_myBookcase.Hide()
-            result = cadasterBook(user_bookcase)
+            status = cadasterBook(user_bookcase)
             directory = 'app/src/images/'
             files = os.listdir(directory)
             if "book.png" in files:
                 os.remove('app/src/images/book.png')
-            return result
+            return status
             break
         if event == "Adquirido?":
             changes = changedStatus(user_bookcase, itens)
