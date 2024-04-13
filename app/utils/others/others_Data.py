@@ -12,9 +12,9 @@ def othersData():
     size_x, size_y, loc_x, loc_y = screen(x, y)
 
     logo = sg.Image(filename='app/src/images/Livretum.png')
-    question_collection = sg.Text("Coleção:", font='Courier')
-    collection_input = sg.InputText('', key="collection", size=(30), font='Courier', focus=True)
-    question_status = sg.Text("Adquirido?", font='Courier')
+    collection = sg.Text("Coleção:", font='Courier')
+    input_collection = sg.InputText('', key="collection", size=(30), font='Courier', focus=True)
+    acquired = sg.Text("Adquirido?", font='Courier')
     system_icon = icon()
 
     layout_othersData = [
@@ -22,10 +22,10 @@ def othersData():
         [sg.Column([[logo]])],
         [sg.Text('')],
         [sg.Text('')],
-        [sg.Column([[question_collection]])],
-        [sg.Column([[collection_input]])],
+        [sg.Column([[collection]])],
+        [sg.Column([[input_collection]])],
         [sg.Text('')],
-        [sg.Column([[question_status]])],
+        [sg.Column([[acquired]])],
         [sg.Checkbox("Sim", key='yes', font='Courier'),
         sg.Checkbox("Não", key='no', font='Courier')],
         [sg.Text('')],
@@ -50,22 +50,22 @@ def othersData():
         if event == sg.WIN_CLOSED:
             return "Exit", "Exit"
             break
-        if values["collection"] == "" or values["yes"] == False and values["no"] == False:
-            window_othersData.Hide()
-            noData()
-            return "Repeat", "Repeat"
-            break
-        else:
-            if event == "Enviar":
+        if event == "Enviar":
+            collection = values["collection"] 
+            acquired = values["yes"] == False and values["no"] == False
+            if collection == "" or acquired == True:
+                noData()
+            else:
                 window_othersData.Hide()
                 collection = values["collection"]
                 yes = values["yes"]
                 no = values["no"]
                 if yes == True:
-                    status = "Sim"
-                    return collection, status
+                    acquired = "Sim"
+                    return collection, acquired
                     break
                 if no == True:
-                    status = "Não"
-                    return collection, status
+                    acquired = "Não"
+                    return collection, acquired
                     break
+                
