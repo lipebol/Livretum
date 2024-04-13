@@ -60,14 +60,14 @@ def menuApp():
 
     while True:
         event, values = window_menuApp.read()
-        if event in (sg.WIN_CLOSED, 'Exit'):
+        if event == sg.WIN_CLOSED:
             break
         if event == "Minha Estante":
             window_menuApp.Hide()
             user_bookcase = userBookcase()
             if user_bookcase != "Exit":
                 if user_bookcase != "Error":
-                    result = "Reload"
-                    while result == "Reload":
-                        result = myBookcase(user_bookcase)
+                    status = "Reload"
+                    while status == "Reload":
+                        status = myBookcase(user_bookcase)
         window_menuApp.UnHide()
