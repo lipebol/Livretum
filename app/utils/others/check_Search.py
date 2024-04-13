@@ -1,19 +1,23 @@
 import PySimpleGUI as sg
 from utils.verifications.extract_One import extractOne
+from utils.verifications.has_Manually import hasManually
 from utils.window.icon import icon
 from utils.window.screen import screen
 
 
-def checkSearch(data, n, headers):
+def checkSearch(data, n):
     
     sg.theme('DarkGrey11')
 
     x, y = 0.43923865300146414, 0.859375
     size_x, size_y, loc_x, loc_y = screen(x, y)
+    try:
+        url_book, title, authors, isbn_10, isbn_13, image = extractOne(data, n)
+    except (IndexError, UnboundLocalError):
+        manually = hasManually()
+        return manually
 
-    URL_book, title, authors, isbn_10, isbn_13, image = extractOne(data, n, headers)
-    system_icon = icon()
-            
+    system_icon = icon()      
     logo = sg.Image(filename='app/src/images/Livretum.png')
     confirm_Book = sg.Text("É esse o livro?", font='Courier')
     bookImage = sg.Image(filename=image)
@@ -53,12 +57,12 @@ def checkSearch(data, n, headers):
     while True:
         event, values = window_confirmSearch.read()
         if event == sg.WIN_CLOSED:
-            break
+            manually = hasManually()
+            return manually
         if event == "Não":
             window_confirmSearch.Hide()
-            return "Não"
+            return "No"
             break
         if event == "Sim":
             window_confirmSearch.Hide()
-            return URL_book
-            break
+            return url_book
