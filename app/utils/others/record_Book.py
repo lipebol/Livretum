@@ -27,7 +27,7 @@ from utils.window.screen import screen
 #     )
 
 
-def recordBook(URL_book, collection, status, user_bookcase):
+def recordBook(url_book, collection, acquired, user_bookcase):
 
     sg.theme('DarkGrey11')
 
@@ -36,7 +36,7 @@ def recordBook(URL_book, collection, status, user_bookcase):
 
     system_icon = icon()
 
-    layout_recordBook = layoutrecordBook(URL_book, collection, status)
+    layout_recordBook = layoutrecordBook(url_book, collection, acquired)
 
     window_recordBook = sg.Window(
         "Livretum",
@@ -56,18 +56,14 @@ def recordBook(URL_book, collection, status, user_bookcase):
             break
         if event == "Cadastrar":
             window_recordBook.Hide()
-            result = addItem(URL_book, collection, status, user_bookcase)
-            if result != "Exit":
-                if result == "prev_Registered":
+            status = addItem(url_book, collection, acquired, user_bookcase)
+            if status != "Exit":
+                if status == "prev_Registered":
                     prevRegistered()
-                if result == "up_Registered":
+                if status == "up_Registered":
                     upRegistered()
-                if result == "item_Added":
+                if status == "item_Added":
                     itemAdded()
-
-                result = "Reload"
-
-            return result
             break
     #         CONNECTION_STRING = "neo4j://{}:7687".format(hostNeo4j)
     #         connection = GraphDatabase.driver(CONNECTION_STRING, auth=(userNeo4j, passNeo4j))
