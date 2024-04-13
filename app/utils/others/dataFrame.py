@@ -21,7 +21,7 @@ def dataFrame(user_bookcase):
         values = "No Records"
     else:
         dataFrame[" id "] = range(1, len(dataFrame) + 1)
-        dataFrame = dataFrame[[" id ", "título", "autor(es)", "Adquirido?"]]
+        dataFrame = dataFrame[[" id ", " coleção ", "título", "autor(es)", "Adquirido?"]]
         cols = dataFrame.columns.tolist()
         values = dataFrame.values.tolist()
     
