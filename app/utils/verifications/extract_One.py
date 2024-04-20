@@ -3,12 +3,14 @@ import textwrap
 import requests
 from PIL import Image
 
-def extractOne(data, n, headers):
+def extractOne(data, n):
+    #   Agent based on Device:"https://deviceatlas.com/blog/list-of-user-agent-strings"   
+    headers = {'User-Agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1"}
 
     wrapperI = textwrap.TextWrapper(width=42)
     wrapperII = textwrap.TextWrapper(width=35)
 
-    URL_book = data['items'][n]['selfLink'] + "?fields=volumeInfo"
+    url_book = data['items'][n]['selfLink'] + "?fields=volumeInfo"
     selector = data['items'][n]['volumeInfo']
     isbn_selector = isbn10 = isbn13 = "Not Found"
     if 'industryIdentifiers' in selector:
@@ -20,13 +22,11 @@ def extractOne(data, n, headers):
         title = data['items'][n]['volumeInfo']['title'],"-", data['items'][n]['volumeInfo']['subtitle']
         title = " ".join(title)
         title = wrapperI.fill(text=title)
-        title = "".join(title)
     if 'authors' not in selector:
         authors = None
     else:
         authors = ", ".join(data['items'][n]['volumeInfo']['authors'])
         authors = wrapperII.fill(text=authors)
-        authors = "".join(authors)
     if isbn_selector != "Not Found":
         i = 0
         while i < len(isbn_selector):
@@ -38,8 +38,8 @@ def extractOne(data, n, headers):
     if 'imageLinks' not in selector:
         image = 'app/src/images/noimage.png'
     else:
-        URL_image = data['items'][n]['volumeInfo']['imageLinks']['smallThumbnail']
-        r = requests.get(url=URL_image, headers=headers, stream=True)
+        url_image = data['items'][n]['volumeInfo']['imageLinks']['smallThumbnail']
+        r = requests.get(url=url_image, headers=headers, stream=True)
         if r.status_code == 200:
             with open('app/src/images/book.jpeg', 'wb') as image:
                 image.write(r.content)
@@ -51,4 +51,4 @@ def extractOne(data, n, headers):
             else:
                 image = 'app/src/images/book.png'
     
-    return URL_book, title, authors, isbn10, isbn13, image
+    return url_book, title, authors, isbn10, isbn13, image
