@@ -8,7 +8,7 @@ def idChanged(user_bookcase, item):
     collections = MongoDB.list_collection_names()
     for name in collections:
         for i in MongoDB[name].find():
-            if i['título'] == item[1]:
+            if i['título'] == item[2]:
                 locate = {
                     '_id': i['_id']
                     }
