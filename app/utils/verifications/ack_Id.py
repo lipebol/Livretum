@@ -22,11 +22,11 @@ def ackId(user_bookcase, item):
         font='Courier'
     )
     message2 = sg.Text(
-        item[1], 
+        item[2], 
         font='Courier'
     )
     message3 = sg.Text(
-        item[2], 
+        item[3], 
         font='Courier'
     )
 
