@@ -4,14 +4,14 @@ import textwrap
 from utils.verifications.scrape import Scrape
 
 
-def extractTwo(URL_book, status):
+def extractTwo(url_book, acquired):
     #   Agent based on Device:"https://deviceatlas.com/blog/list-of-user-agent-strings"   
     headers = {'User-Agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1"}
     
     wrapperI = textwrap.TextWrapper(width=45)
     wrapperII = textwrap.TextWrapper(width=35)
 
-    r = requests.get(url=URL_book, headers=headers)
+    r = requests.get(url=url_book, headers=headers)
     if r.status_code == 200:
         book = json.loads(r.content)
         selector = book['volumeInfo']
@@ -25,15 +25,11 @@ def extractTwo(URL_book, status):
             title = book['volumeInfo']['title']," - ", book['volumeInfo']['subtitle']
             title = " ".join(title)
             title = wrapperI.fill(text=title)
-            title = "".join(title)
         if 'authors' not in selector:
             authors = None
         else:
             authors = ", ".join(book['volumeInfo']['authors'])
             authors = wrapperII.fill(text=authors)
-            authors = "".join(authors)
-#            authors = ", ".join(book['volumeInfo']['authors'])
-#            authors = book['volumeInfo']['authors']
         if 'publisher' not in selector:
             pub_company = None
         else:
@@ -65,7 +61,7 @@ def extractTwo(URL_book, status):
             if "General" in categories:
                 categories.remove("General")
 
-    rating, price = Scrape(title)
+    store, url_purchase, rating, price = Scrape(title)
 
     item = {
         "categoria(s)": categories,
@@ -76,9 +72,11 @@ def extractTwo(URL_book, status):
         "isbn_10": isbn10,
         "isbn_13": isbn13,
         "páginas": pages,
-        "Adquirido?": status,
+        "loja": store,
+        "link": url_purchase,
         "avaliação": rating,
         "preço": price,
+        "Adquirido?": acquired
     }
 
     return item
