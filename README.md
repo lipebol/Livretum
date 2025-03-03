@@ -7,7 +7,7 @@
 </h4>
 
 <p align="center">
-	<img alt="Livretum" src="https://res.cloudinary.com/dfph6kr4e/image/upload/v1681333500/livretum_v0.2.0-alpha_all_ovntam.gif">
+	<img alt="Livretum" src="">
 </p>
 
 ## :memo: Sobre
