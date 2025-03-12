@@ -92,3 +92,39 @@ class Layout:
             alpha_channel=.9, element_justification='c', location=(self.loc_x, self.loc_y)
         )
     
+
+    def statusAcquired(self, screen: object) -> object:
+        self.size_x, self.loc_x, self.size_y, self.loc_y = tuple(screen)
+        return Window(
+            getenv('NAME'), icon=self.icon, layout=[
+                [Text('')],
+                [Column([[Text('Qual o "id" do livro?',font=getenv('DEFAULT_FONT'))]])],
+                [Text('')],
+                [Column([[InputText('',key='id',size=(15),font=getenv('DEFAULT_FONT'),focus=True)]])],
+                [Text('')],
+                [Button('Enviar',font=getenv('DEFAULT_FONT'),bind_return_key=True)]
+            ],
+            size=(self.size_x, self.size_y), resizable=True, grab_anywhere=True, 
+            element_justification='c', location=(self.loc_x, self.loc_y)
+        )
+
+    
+    def thisId(self, screen: object, book: list) -> object:
+        self.size_x, self.loc_x, self.size_y, self.loc_y = tuple(screen)
+        return Window(
+            getenv('NAME'), icon=self.icon, layout=[
+                [Text('')],
+                [
+                    Column([[Text('[!] Você adquiriu o livro abaixo:',font=getenv('DEFAULT_FONT'))]])
+                ],
+                [
+                    Column([[Text(f'Título: {book[2]}',font=getenv('DEFAULT_FONT'))]])
+                ],
+                [
+                    Column([[Text(f'Autor(es): {book[3]}',font=getenv('DEFAULT_FONT'))]])
+                ],
+                [Column([[Button('Confirmar',font=getenv('DEFAULT_FONT'))]])],
+            ],
+            size=(self.size_x, self.size_y), grab_anywhere=True, 
+            element_justification='c', location=(self.loc_x, self.loc_y)
+        )
