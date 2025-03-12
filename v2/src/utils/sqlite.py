@@ -34,7 +34,7 @@ class SQLite:
         try:
             self.__sqlite_cursor.execute(literal_eval(getenv('DML')).get(name), args)
             self.__sqlite_conn.commit()
-            return self.__sqlite_cursor.lastrowid
+            return self.__sqlite_cursor.lastrowid if 'insert' in name else self.__sqlite_cursor.rowcount
         except Exception as error:
             print(error)
             return False
