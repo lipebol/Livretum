@@ -1,8 +1,9 @@
 from dotenv import load_dotenv
-from PySimpleGUI import theme, WIN_CLOSED
+from PySimpleGUI import (theme, WIN_CLOSED)
 from utils.check import Check
 from utils.layout import Layout
 from utils.notify import Notify
+from utils.others import Others
 from utils.set import Set
 
 
@@ -11,12 +12,14 @@ class App:
     load_dotenv()
     theme('DarkGrey11')
     def __init__(self):
-        self.layout = Layout(Set().logo(), Set().icon())
-
-
+        self.__set = Set(Check())
+        self.__layout = Layout(self.__set.logo(), self.__set.icon())
+        
     def user(self) -> tuple:
         try:
-            self.userWindow = self.layout.user(Set().screen((0.36603221083455345, 0.46875)))
+            self.userWindow = self.__layout.user(
+                self.__set.screen((0.36603221083455345, 0.46875))
+            )
             while True:
                 event, values = self.userWindow.read()
                 if event == WIN_CLOSED:
@@ -28,7 +31,7 @@ class App:
                         if not Check().db():
                             if Notify().hasWebhook():
                                 return 'Exit'
-                            return Set().db(values['user'])
+                            return self.__set.db(values['user'])
                         return Check().username(values['user'])
         except Exception as error:
             print(error)
@@ -37,9 +40,10 @@ class App:
 
     def bookcase(self, user: tuple) -> str:
         try:
-            self.bookcaseWindow = self.layout.bookcase(
-                Set().screen((0.541727672035139, 0.5989583333333334)), 
-                Set().bookcase(user)
+            self.__others = Others(self.__set, self.__layout)
+            self.bookcaseWindow = self.__layout.bookcase(
+                self.__set.screen((0.541727672035139, 0.5989583333333334)), 
+                self.__set.bookcase(user)
             )
             while True:
                 event, values = self.bookcaseWindow.read()
@@ -47,7 +51,14 @@ class App:
                     return 'Exit'
                     break
                 if event == 'Novo Livro':
+                    self.bookcaseWindow.Hide()
                     return 'Reload'
+                    break
+                if event == "Adquirido?":
+                    if self.__others.statusAcquired():
+                        self.bookcaseWindow.Hide()
+                        return 'Reload'
+                    
         except Exception as error:
             print(error)
             return 'Error'
@@ -58,8 +69,10 @@ class App:
             if not Check().connection():
                 Notify().noNet()
             else:
-                if Set().dir():
-                    self.mainWindow = self.layout.main(Set().screen((0.36603221083455345, 0.390625)))
+                if self.__set.dir():
+                    self.mainWindow = self.__layout.main(
+                        self.__set.screen((0.36603221083455345, 0.390625))
+                    )
                     while True:
                         event, values = self.mainWindow.read()
                         if event == WIN_CLOSED:
