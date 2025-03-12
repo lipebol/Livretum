@@ -1,20 +1,17 @@
 from ast import literal_eval
 from cryptography.fernet import Fernet
-from os import getenv, makedirs, chmod
-from os.path import abspath, isdir
+from os import (getenv, makedirs, chmod)
+from os.path import (abspath, isdir)
 import pandas as pd
 from platform import system
-import PySimpleGUI as sg
-from subprocess import run, PIPE
-from utils.check import Check
+from subprocess import (run, PIPE)
 from utils.sqlite import SQLite
 
 
 class Set:
 
-    def __init__(self) -> None:
-        self.__check = Check()
-        self.system = system()
+    def __init__(self, Check: object) -> None:
+        self.default_dir, self.__key, self.system = Check.default_dir(), Check.key(), system()
         
     def logo(self) -> str:
         return abspath(getenv('LOGO'))
@@ -29,7 +26,8 @@ class Set:
                     run(
                         command, shell=True, stdout=PIPE, text=True
                     ).stdout.strip() for command in getenv(
-                        f'{self.system}_SCREEN').split(getenv('SEPARATOR'))
+                        f'{self.system}_SCREEN').split(getenv('SEPARATOR')
+                    )
                 ]
             ], window_sizes):
                 yield int(screen_size * window_size)
@@ -37,10 +35,10 @@ class Set:
 
     def dir(self) -> bool:
         try:
-            if not isdir(self.__check.default_dir()):
-                makedirs(self.__check.default_dir())
-                if '.ps.key' not in listdir(self.__check.default_dir()):
-                    with open(f'{self.__check.default_dir()}/.ps.key', 'wb') as key:
+            if not isdir(self.default_dir):
+                makedirs(self.default_dir)
+                if not self.__key:
+                    with open(f'{self.default_dir}/.ps.key', 'wb') as key:
                         key.write(Fernet.generate_key())
             return True
         except Exception as error:
@@ -49,23 +47,30 @@ class Set:
 
     def db(self, username: str):
         try:
-            self.__db = SQLite(self.__check.default_dir())
+            self.__db = SQLite(self.default_dir)
             if self.__db.launch():
                 return self.__db.new_user(username)
         except Exception as error:
             print(error)
             return False
 
-    def bookcase(self, user: tuple):
+    def bookcase(self, user=None):
         try:
-            self.id, self.username = user
+            if user:
+                self.id, self.username = user
             return pd.DataFrame(
-                SQLite(self.__check.default_dir()).dql('select_bookcase_by_id', (self.id,)),
+                SQLite(self.default_dir).dql('select_bookcase_by_id', (self.id,)),
                 columns=literal_eval(getenv('BOOKCASE_COLUMNS'))
             )
         except Exception as error:
             print(error)
 
+    def updateAcquired(self, id: str):
+        try:
+            self.book = self.bookcase().values.tolist()[int(id)-1]
+            return SQLite(self.default_dir).dml('update_acquired', ('S',self.book[2],self.book[3],self.id,))
+        except Exception as error:
+            print(error)
 
 
 
