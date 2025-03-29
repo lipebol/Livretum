@@ -1,5 +1,5 @@
-from os import getenv, listdir
-from os.path import expanduser
+from os import (getenv, listdir)
+from os.path import (expanduser, join)
 from requests import get
 from utils.sqlite import SQLite
 
@@ -15,6 +15,9 @@ class Check:
     def default_dir(self):
         return getenv('DEFAULT_DIR') % expanduser('~')
 
+    def tmp_dir(self):
+        return join(self.default_dir(),'tmp')
+    
     def key(self):
         return '.ps.key' in listdir(self.default_dir())
 
